@@ -1,26 +1,25 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import SheetMenu from './SheetMenu.vue';
-import ColorModeToggle from '../ColorModeToggle.vue';
-import UserDropdown from './UserDropdown.vue';
+import SheetMenu from "./SheetMenu.vue";
+import ColorModeToggle from "../ColorModeToggle.vue";
+import UserDropdown from "./UserDropdown.vue";
 </script>
 
 <template>
-<header
-  class="sticky top-0 z-10 w-full bg-background/95 shadow backdrop-blur supports-backdrop-filter:bg-background/60 dark:shadow-secondary">
-  <div class="mx-4 sm:mx-8 flex h-14 items-center">
-    <div class="flex items-center space-x-4 lg:space-x-0">
-      <SheetMenu />
-      <h1 class="font-bold">
-        <!-- {{ pageTitle }} -->
-      </h1>
+  <header class="sticky top-0 z-10 w-full bg-background/95 shadow backdrop-blur supports-backdrop-filter:bg-background/60 dark:shadow-secondary">
+    <div class="mx-4 sm:mx-8 flex h-14 items-center">
+      <div class="flex items-center space-x-4 lg:space-x-0">
+        <SheetMenu />
+        <h1 class="font-bold">
+          <!-- {{ pageTitle }} -->
+        </h1>
+      </div>
+      <div class="flex flex-1 items-center space-x-2 justify-end">
+        <ColorModeToggle />
+        <UserDropdown />
+      </div>
     </div>
-    <div class="flex flex-1 items-center space-x-2 justify-end">
-      <ColorModeToggle />
-      <UserDropdown />
-    </div>
-  </div>
-</header>
+  </header>
 </template>
 
 <style scoped></style>

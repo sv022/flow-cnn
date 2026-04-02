@@ -13,7 +13,7 @@ export const mockLayers = [
       kernel_size: 3,
       num_kernels: 32,
       stride: 1,
-      padding: 1,
+      padding: 0,
     },
   },
   {
@@ -41,7 +41,7 @@ export const mockLayers = [
       kernel_size: 3,
       num_kernels: 64,
       stride: 1,
-      padding: 1,
+      padding: 0,
     },
   },
   {
