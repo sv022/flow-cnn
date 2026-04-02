@@ -7,6 +7,9 @@ import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetT
 import { ref } from "vue";
 import { LayerType, type Layer } from "@/types";
 import ConvSettings from "./settings/ConvSettings.vue";
+import { useModelStore } from "@/stores/modelStore";
+
+const modelStore = useModelStore();
 
 const props = defineProps<{
   layer: Layer;
@@ -30,7 +33,7 @@ function openSheet() {
         Edit layer parameters
       </ContextMenuItem>
       <ContextMenuSeparator />
-      <ContextMenuItem>
+      <ContextMenuItem @select="modelStore.removeLayer(props.layer.id)">
         <LucideTrash class="mr-2 h-4 w-4" />
         Delete
       </ContextMenuItem>
@@ -44,7 +47,7 @@ function openSheet() {
       </SheetHeader>
       <ConvSettings v-if="layer.params.type === LayerType.Convolution" :layer="props.layer.params as any" />
       <SheetFooter class="flex w-full">
-        <Button class="w-full p-6 font-semibold" variant="destructive">
+        <Button class="w-full p-6 font-semibold" variant="destructive" @click="modelStore.removeLayer(props.layer.id)">
           <LucideTrash class="mr-2 h-4 w-4" />
           Remove layer
         </Button>

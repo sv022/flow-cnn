@@ -39,6 +39,10 @@ export const useModelStore = defineStore("model", () => {
     else layers.value.push(newLayer);
   };
 
+  const removeLayer = (id: string) => {
+    layers.value = layers.value.filter((layer) => layer.id !== id);
+  };
+
   const modelNodes = computed(() => {
     const nodes = [] as (Layer | AddLayerAction)[];
 
@@ -71,5 +75,6 @@ export const useModelStore = defineStore("model", () => {
     layers,
     modelNodes,
     addLayer,
+    removeLayer,
   };
 });
