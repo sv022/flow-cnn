@@ -47,9 +47,9 @@ function openSheet() {
         <SheetTitle>Parameters</SheetTitle>
         <SheetDescription> Layer: Conv64_1</SheetDescription>
       </SheetHeader>
-      <ConvSettings v-if="layer.params.type === LayerType.Convolution" :layer="props.layer.params as any" />
-      <PoolSettings v-else-if="layer.params.type === LayerType.Pooling" :layer="props.layer.params as any" />
-      <DenseSettings v-else-if="layer.params.type === LayerType.Dense" :layer="props.layer.params as any" />
+      <ConvSettings v-if="layer.params.type === LayerType.Convolution" :id="layer.id" :layer="props.layer.params as any" />
+      <PoolSettings v-else-if="layer.params.type === LayerType.Pooling" :id="layer.id" :layer="props.layer.params as any" />
+      <DenseSettings v-else-if="layer.params.type === LayerType.Dense" :id="layer.id" :layer="props.layer.params as any" />
       <SheetFooter class="flex w-full">
         <Button class="w-full p-6 font-semibold" variant="destructive" @click="modelStore.removeLayer(props.layer.id)">
           <LucideTrash class="mr-2 h-4 w-4" />

@@ -43,6 +43,13 @@ export const useModelStore = defineStore("model", () => {
     layers.value = layers.value.filter((layer) => layer.id !== id);
   };
 
+  const updateLayer = (id: string, newParams: Layer["params"]) => {
+    const layer = layers.value.find((layer) => layer.id === id);
+    if (layer) {
+      layer.params = newParams;
+    }
+  };
+
   const modelNodes = computed(() => {
     const nodes = [] as (Layer | AddLayerAction)[];
 
@@ -76,5 +83,6 @@ export const useModelStore = defineStore("model", () => {
     modelNodes,
     addLayer,
     removeLayer,
+    updateLayer,
   };
 });

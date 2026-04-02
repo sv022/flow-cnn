@@ -22,8 +22,8 @@ export const mockLayers = [
     type: "layer",
     params: {
       type: LayerType.Pooling,
-      input_width: 28,
-      input_height: 28,
+      input_width: 26,
+      input_height: 26,
       channels: 32,
       pool: 2,
       stride: 2,
@@ -35,8 +35,8 @@ export const mockLayers = [
     type: "layer",
     params: {
       type: LayerType.Convolution,
-      input_width: 14,
-      input_height: 14,
+      input_width: 13,
+      input_height: 13,
       channels: 32,
       kernel_size: 3,
       num_kernels: 64,
@@ -50,8 +50,8 @@ export const mockLayers = [
     type: "layer",
     params: {
       type: LayerType.Pooling,
-      input_width: 14,
-      input_height: 14,
+      input_width: 11,
+      input_height: 11,
       channels: 64,
       pool: 2,
       stride: 2,
@@ -63,7 +63,7 @@ export const mockLayers = [
     type: "layer",
     params: {
       type: LayerType.Dense,
-      input_nodes: 7 * 7 * 64,
+      input_nodes: 5 * 5 * 64,
       output_nodes: 128,
     },
   },
