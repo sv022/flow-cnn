@@ -18,9 +18,8 @@ export function getLayerY(layer: Layer): number {
 
 export function getLayerShiftX(layer: Layer): number {
   if (layer.params.type === "conv" || layer.params.type === "pool") {
-    if (layer.params.channels >= 64) return 750 + 125;
-    if (layer.params.channels >= 32) return 525 + 125;
-    if (layer.params.channels >= 16) return 450 + 125;
+    if (layer.params.channels >= 64) return 700 + 125;
+    if (layer.params.channels >= 16) return 400 + 125;
     return 375 + 125;
   }
   return 200 + 125;
