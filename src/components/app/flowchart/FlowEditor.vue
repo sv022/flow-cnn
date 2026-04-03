@@ -88,12 +88,7 @@ function toggleDarkMode() {
     <Background pattern-color="#aaa" :gap="16" />
 
     <template #node-layer="props">
-      <LayerNode
-        v-if="modelStore.layers.find((layer) => layer.id === props.id)"
-        :id="props.id"
-        :layer="modelStore.layers.find((layer) => layer.id === props.id)!"
-        :isLastLayer="props.id === modelStore.layers[modelStore.layers.length - 1]!.id"
-      />
+      <LayerNode v-if="modelStore.layers.find((layer) => layer.id === props.id)" :id="props.id" :layer="modelStore.layers.find((layer) => layer.id === props.id)!" />
     </template>
 
     <template #node-add-layer="props">
