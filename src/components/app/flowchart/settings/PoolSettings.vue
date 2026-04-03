@@ -51,7 +51,7 @@ function updateLayer() {
     </div>
     <div class="grid gap-3">
       <Label for="pool-settings-channels">Channels</Label>
-      <NumberField id="pool-settings-channels" :default-value="props.layer.channels" :min="1" :max="128" v-model="channels" @change="updateLayer">
+      <NumberField id="pool-settings-channels" :default-value="props.layer.channels" :min="1" :max="128" v-model="channels" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
           <NumberFieldInput />
