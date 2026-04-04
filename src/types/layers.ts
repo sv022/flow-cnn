@@ -33,6 +33,8 @@ export interface DenseLayerType {
 export interface Layer {
   id: string;
   position: { x: number; y: number };
+  labelName: string;
+  labelParams: string;
   type: "layer";
   params: ConvolutionLayerType | PoolingLayerType | DenseLayerType;
 }

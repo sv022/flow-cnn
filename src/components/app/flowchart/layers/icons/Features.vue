@@ -8,6 +8,8 @@ const props = defineProps<{
   size: number;
   channels: number;
   kernelSize: number;
+  labelName: string;
+  labelParams: string;
 }>();
 
 const renderStore = useRenderStore();
@@ -16,6 +18,13 @@ const filterPos = computed(() => {
   const offset = renderStore.offset * (props.channels - 1);
   const top = offset + renderStore.offset * (props.size - props.kernelSize);
   const left = offset + renderStore.offset * (props.size - props.kernelSize);
+
+  return { top, left };
+});
+
+const labelNamePos = computed(() => {
+  const top = props.size * renderStore.featureScale + renderStore.offset * props.channels + (renderStore.featureScale + renderStore.offset) * 5;
+  const left = props.size * renderStore.featureScale + renderStore.offset * props.channels + (renderStore.featureScale + renderStore.offset) * 5 - 225;
 
   return { top, left };
 });
@@ -28,6 +37,14 @@ const filterPos = computed(() => {
       height: `${props.size * renderStore.featureScale + renderStore.offset * (props.channels - 2)}px`,
     }"
   >
+    <p
+      class="absolute text-2xl"
+      :style="{
+        top: `${-(renderStore.offset + renderStore.featureScale) * 5}px`,
+      }"
+    >
+      {{ labelParams }}
+    </p>
     <svg
       v-for="(i, index) in props.channels"
       :key="index"
@@ -55,5 +72,14 @@ const filterPos = computed(() => {
         left: `${filterPos.left}px`,
       }"
     />
+    <p
+      class="absolute text-2xl"
+      :style="{
+        top: `${labelNamePos.top}px`,
+        left: `${labelNamePos.left}px`,
+      }"
+    >
+      {{ labelName }}
+    </p>
   </div>
 </template>

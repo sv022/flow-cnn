@@ -14,8 +14,8 @@ const props = defineProps<{
 
 <template>
   <LayerContext :layer="props.layer">
-    <DenseLayer v-if="props.layer.params.type === LayerType.Dense" :params="props.layer.params" />
-    <PoolLayer v-else-if="props.layer.params.type === LayerType.Pooling" :params="props.layer.params" />
-    <ConvLayer v-else-if="props.layer.params.type === LayerType.Convolution" :params="props.layer.params" />
+    <DenseLayer v-if="props.layer.params.type === LayerType.Dense" :params="props.layer.params" :label-name="props.layer.labelName" :label-params="props.layer.labelParams" />
+    <PoolLayer v-else-if="props.layer.params.type === LayerType.Pooling" :params="props.layer.params" :label-name="props.layer.labelName" :label-params="props.layer.labelParams" />
+    <ConvLayer v-else-if="props.layer.params.type === LayerType.Convolution" :params="props.layer.params" :label-name="props.layer.labelName" :label-params="props.layer.labelParams" />
   </LayerContext>
 </template>

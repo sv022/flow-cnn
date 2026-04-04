@@ -5,6 +5,8 @@ export const mockLayers = [
     id: "1",
     position: { x: 0, y: 0 },
     type: "layer",
+    labelName: "conv2d32@3x3",
+    labelParams: "1@28x28",
     params: {
       type: LayerType.Convolution,
       input_width: 28,
@@ -20,6 +22,8 @@ export const mockLayers = [
     id: "2",
     position: { x: 0, y: 0 },
     type: "layer",
+    labelName: "maxpool32@2x2",
+    labelParams: "32@26x26",
     params: {
       type: LayerType.Pooling,
       input_width: 26,
@@ -33,6 +37,8 @@ export const mockLayers = [
     id: "3",
     position: { x: 0, y: 0 },
     type: "layer",
+    labelName: "conv2d64@3x3",
+    labelParams: "32@13x13",
     params: {
       type: LayerType.Convolution,
       input_width: 13,
@@ -48,6 +54,8 @@ export const mockLayers = [
     id: "4",
     position: { x: 0, y: 0 },
     type: "layer",
+    labelName: "maxpool64@2x2",
+    labelParams: "64@11x11",
     params: {
       type: LayerType.Pooling,
       input_width: 11,
@@ -61,6 +69,8 @@ export const mockLayers = [
     id: "5",
     position: { x: 0, y: 0 },
     type: "layer",
+    labelName: "dense-1600",
+    labelParams: "1x128",
     params: {
       type: LayerType.Dense,
       input_nodes: 5 * 5 * 64,
@@ -71,6 +81,8 @@ export const mockLayers = [
     id: "6",
     position: { x: 0, y: 0 },
     type: "layer",
+    labelName: "dense-128",
+    labelParams: "1x10",
     params: {
       type: LayerType.Dense,
       input_nodes: 128,

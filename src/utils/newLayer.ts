@@ -114,3 +114,23 @@ export function getNewLayerParams(type: LayerType, nextLayer: Layer["params"], w
       }
   }
 }
+
+export function getLabelsFromParams(params: Layer["params"]) {
+  switch (params.type) {
+    case LayerType.Convolution:
+      return {
+        labelName: `conv2d${params.num_kernels}@${params.kernel_size}x${params.kernel_size}`,
+        labelParams: `${params.channels}@${params.input_width}x${params.input_height}`,
+      };
+    case LayerType.Pooling:
+      return {
+        labelName: `maxpool${params.channels}@${params.pool}x${params.pool}`,
+        labelParams: `${params.channels}@${params.input_width}x${params.input_height}`,
+      };
+    case LayerType.Dense:
+      return {
+        labelName: `dense-${params.input_nodes}`,
+        labelParams: `1x${params.output_nodes}`,
+      };
+  }
+}

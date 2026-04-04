@@ -2,7 +2,7 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import type { Layer, AddLayerAction, LayerType } from "@/types";
 import { mockLayers } from "@/utils/mock";
-import { getNewLayerParams } from "@/utils/newLayer";
+import { getLabelsFromParams, getNewLayerParams } from "@/utils/newLayer";
 import { useRenderStore } from "./renderStore";
 
 export const useModelStore = defineStore("model", () => {
@@ -30,9 +30,13 @@ export const useModelStore = defineStore("model", () => {
     if (addId === "add-start") newLayerParams = getNewLayerParams(type, baseLayerParams, "before")!;
     else newLayerParams = getNewLayerParams(type, baseLayerParams, "after")!;
 
+    const newLabels = getLabelsFromParams(newLayerParams);
+
     const newLayer: Layer = {
       id: `${Date.now()}`,
       type: "layer",
+      labelName: newLabels.labelName,
+      labelParams: newLabels.labelParams,
       position: { x: 0, y: 0 },
       params: newLayerParams,
     };
@@ -46,9 +50,13 @@ export const useModelStore = defineStore("model", () => {
   };
 
   const updateLayer = (id: string, newParams: Layer["params"]) => {
+    const updatedLabels = getLabelsFromParams(newParams);
+
     const layer = layers.value.find((layer) => layer.id === id);
     if (layer) {
       layer.params = newParams;
+      layer.labelName = updatedLabels.labelName;
+      layer.labelParams = updatedLabels.labelParams;
     }
   };
 
