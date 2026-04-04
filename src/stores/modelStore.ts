@@ -60,6 +60,13 @@ export const useModelStore = defineStore("model", () => {
     }
   };
 
+  const updateLayerLabel = (id: string, labelName: string) => {
+    const layer = layers.value.find((layer) => layer.id === id);
+    if (layer) {
+      layer.labelName = labelName;
+    }
+  };
+
   const modelNodes = computed(() => {
     const nodes = [] as (Layer | AddLayerAction)[];
 
@@ -101,5 +108,6 @@ export const useModelStore = defineStore("model", () => {
     addLayer,
     removeLayer,
     updateLayer,
+    updateLayerLabel,
   };
 });

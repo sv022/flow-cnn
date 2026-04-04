@@ -1,29 +1,31 @@
 <script setup lang="ts">
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { LucideLayers, LucideSettings2 } from "lucide-vue-next";
+import { LucideNetwork, LucideSettings2 } from "lucide-vue-next";
+import LayoutTree from "./LayoutTree.vue";
+import RenderParams from "./RenderParams.vue";
 </script>
 <template>
   <Accordion type="single" collapsible class="w-full" default-value="item-2">
     <AccordionItem value="item-1">
-      <AccordionTrigger class="text-sm text-muted-foreground">
+      <AccordionTrigger class="text-sm text-charcoal">
         <span class="flex items-center">
-          <LucideSettings2 class="mr-2 h-4 w-4" />
+          <LucideSettings2 class="mr-2 h-4 w-4 stroke-highlight" />
           General settings
         </span>
       </AccordionTrigger>
       <AccordionContent>
-        <p>General settings for the model</p>
+        <RenderParams />
       </AccordionContent>
     </AccordionItem>
     <AccordionItem value="item-2">
-      <AccordionTrigger class="text-sm text-muted-foreground">
+      <AccordionTrigger class="text-sm text-text-charcoal">
         <span class="flex items-center">
-          <LucideLayers class="mr-2 h-4 w-4" />
+          <LucideNetwork class="mr-2 h-4 w-4 stroke-highlight" />
           Layout
         </span>
       </AccordionTrigger>
       <AccordionContent>
-        <p>Model tree layout</p>
+        <LayoutTree />
       </AccordionContent>
     </AccordionItem>
   </Accordion>

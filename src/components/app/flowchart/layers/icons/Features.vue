@@ -15,16 +15,16 @@ const props = defineProps<{
 const renderStore = useRenderStore();
 
 const filterPos = computed(() => {
-  const offset = renderStore.offset * (props.channels - 1);
-  const top = offset + renderStore.offset * (props.size - props.kernelSize);
-  const left = offset + renderStore.offset * (props.size - props.kernelSize);
+  const offset = renderStore.offset * (props.channels - 1) + Math.floor(renderStore.featureScale * props.size * 0.66);
+  const top = offset;
+  const left = top;
 
   return { top, left };
 });
 
 const labelNamePos = computed(() => {
-  const top = props.size * renderStore.featureScale + renderStore.offset * props.channels + (renderStore.featureScale + renderStore.offset) * 5;
-  const left = props.size * renderStore.featureScale + renderStore.offset * props.channels + (renderStore.featureScale + renderStore.offset) * 5 - 225;
+  const top = props.size * renderStore.featureScale + renderStore.offset * props.channels + (renderStore.featureScale + renderStore.offset) * renderStore.featureScale * 0.1;
+  const left = props.size * renderStore.featureScale + (renderStore.offset * props.channels - 1) + (renderStore.featureScale + renderStore.offset) * renderStore.featureScale * 0.1 - 200;
 
   return { top, left };
 });
@@ -38,9 +38,10 @@ const labelNamePos = computed(() => {
     }"
   >
     <p
+      v-if="renderStore.showLayerLabels"
       class="absolute text-2xl"
       :style="{
-        top: `${-(renderStore.offset + renderStore.featureScale) * 5}px`,
+        top: `${-(renderStore.offset + renderStore.featureScale) - 3 * renderStore.featureScale - 20}px`,
       }"
     >
       {{ labelParams }}
@@ -73,6 +74,7 @@ const labelNamePos = computed(() => {
       }"
     />
     <p
+      v-if="renderStore.showLayerLabels"
       class="absolute text-2xl"
       :style="{
         top: `${labelNamePos.top}px`,
