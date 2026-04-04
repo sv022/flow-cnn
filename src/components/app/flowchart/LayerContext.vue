@@ -35,7 +35,7 @@ function openSheet() {
         Edit layer parameters
       </ContextMenuItem>
       <ContextMenuSeparator />
-      <ContextMenuItem @select="modelStore.removeLayer(props.layer.id)">
+      <ContextMenuItem class="text-destructive-foreground focus:bg-destructive focus:text-destructive-foreground" @select="modelStore.removeLayer(props.layer.id)">
         <LucideTrash class="mr-2 h-4 w-4" />
         Delete
       </ContextMenuItem>
