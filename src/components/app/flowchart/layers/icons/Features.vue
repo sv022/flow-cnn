@@ -11,7 +11,12 @@ const renderStore = useRenderStore();
 </script>
 
 <template>
-  <div class="relative visible inline-block w-max">
+  <div
+    class="relative visible inline-block w-max -translate-y-1/2"
+    :style="{
+      height: `${props.size * renderStore.featureScale + renderStore.offset * (props.channels - 2)}px`,
+    }"
+  >
     <svg
       v-for="(i, index) in props.channels"
       :key="index"

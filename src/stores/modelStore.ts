@@ -2,11 +2,13 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import type { Layer, AddLayerAction, LayerType } from "@/types";
 import { mockLayers } from "@/utils/mock";
-import { getLayerShiftX, getLayerY } from "@/utils/layerPlacement";
 import { getNewLayerParams } from "@/utils/newLayer";
+import { useRenderStore } from "./renderStore";
 
 export const useModelStore = defineStore("model", () => {
   const layers = ref<Layer[]>(mockLayers as Layer[]);
+
+  const renderStore = useRenderStore();
 
   const addLayer = (addId: string, type: LayerType) => {
     let newLayerParams = {} as Layer["params"];
@@ -62,9 +64,16 @@ export const useModelStore = defineStore("model", () => {
     });
 
     layers.value.forEach((layer) => {
-      const layerY = getLayerY(layer);
+      const layerY = 0;
       layer.position = { x: currentX, y: layerY };
-      currentX += getLayerShiftX(layer);
+      if (layer.params.type === "conv" || layer.params.type === "pool") {
+        currentX += layer.params.input_width * renderStore.featureScale + renderStore.offset * (layer.params.channels - 1) * renderStore.layerSpacingCoef;
+        if (layer.params.channels <= 3) currentX += 150 * renderStore.layerSpacingCoef;
+        else currentX += 100 * renderStore.layerSpacingCoef;
+      } else {
+        layer.position.x += 125 * renderStore.layerSpacingCoef;
+        currentX += 50 + 125 * renderStore.layerSpacingCoef;
+      }
 
       nodes.push(layer);
     });
@@ -72,7 +81,7 @@ export const useModelStore = defineStore("model", () => {
     nodes.push({
       id: `add-end`,
       type: "add-layer",
-      position: { x: currentX - 125, y: 0 },
+      position: { x: currentX - 100, y: 0 },
     });
 
     return nodes;
