@@ -11,5 +11,5 @@ const props = defineProps<{
   <Features9C v-else-if="props.params.channels >= 32" :type="LayerType.Convolution" />
   <Features5C v-else-if="props.params.channels >= 16" :type="LayerType.Convolution" />
   <Features3C v-else :type="LayerType.Convolution" /> -->
-  <Features :size="props.params.input_height" :channels="props.params.channels" />
+  <Features :size="props.params.input_height" :channels="props.params.channels" :kernel-size="props.params.kernel_size" />
 </template>

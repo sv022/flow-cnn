@@ -7,5 +7,5 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <Features :size="props.params.input_height" :channels="props.params.channels" />
+  <Features :size="props.params.input_height" :channels="props.params.channels" :kernel-size="props.params.pool" />
 </template>

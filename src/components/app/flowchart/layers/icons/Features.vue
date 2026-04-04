@@ -1,13 +1,24 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useRenderStore } from "@/stores/renderStore";
+import Filter from "./Filter.vue";
+import { computed } from "vue";
 
 const props = defineProps<{
   size: number;
   channels: number;
+  kernelSize: number;
 }>();
 
 const renderStore = useRenderStore();
+
+const filterPos = computed(() => {
+  const offset = renderStore.offset * (props.channels - 1);
+  const top = offset + renderStore.offset * (props.size - props.kernelSize);
+  const left = offset + renderStore.offset * (props.size - props.kernelSize);
+
+  return { top, left };
+});
 </script>
 
 <template>
@@ -35,5 +46,14 @@ const renderStore = useRenderStore();
 
       <rect width="255" height="255" x="2.5" y="2.5" rx="2.5" stroke="rgb(80,80,80)" stroke-width="5" />
     </svg>
+    <Filter
+      class="z-10 absolute"
+      :style="{
+        width: `${props.kernelSize * renderStore.featureScale}px`,
+        height: `${props.kernelSize * renderStore.featureScale}px`,
+        top: `${filterPos.top}px`,
+        left: `${filterPos.left}px`,
+      }"
+    />
   </div>
 </template>
