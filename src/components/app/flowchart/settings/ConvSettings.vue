@@ -3,8 +3,9 @@ import { Label } from "@/components/ui/label";
 import type { ConvolutionLayerType } from "@/types";
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from "@/components/ui/number-field";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useModelStore } from "@/stores/modelStore";
+import LayerParams from "./LayerParams.vue";
 
 const props = defineProps<{
   id: string;
@@ -38,6 +39,18 @@ function updateLayer() {
     padding: padding.value,
   });
 }
+
+const learnableParams = computed(() => {
+  return kernelSize.value * kernelSize.value * channels.value * numKernels.value + numKernels.value;
+});
+
+const outputShape = computed(() => {
+  return `(
+    ${Math.floor((layerSize.value - kernelSize.value + 2 * padding.value) / stride.value + 1)},
+    ${Math.floor((layerSize.value - kernelSize.value + 2 * padding.value) / stride.value + 1)},
+    ${numKernels.value}
+)`;
+});
 </script>
 <template>
   <div class="grid flex-1 grow auto-rows-min gap-6 py-10">
@@ -143,5 +156,6 @@ function updateLayer() {
         </SelectContent>
       </Select>
     </div>
+    <LayerParams :learnable-params="learnableParams" :output-shape="outputShape" />
   </div>
 </template>

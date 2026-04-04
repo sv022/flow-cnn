@@ -45,7 +45,7 @@ function openSheet() {
     <SheetContent class="overflow-y-scroll h-screen">
       <SheetHeader class="mt-12">
         <SheetTitle>Parameters</SheetTitle>
-        <SheetDescription> Layer: Conv64_1</SheetDescription>
+        <SheetDescription> Layer: {{ layer.labelName }}</SheetDescription>
       </SheetHeader>
       <ConvSettings v-if="layer.params.type === LayerType.Convolution" :id="layer.id" :layer="props.layer.params as any" />
       <PoolSettings v-else-if="layer.params.type === LayerType.Pooling" :id="layer.id" :layer="props.layer.params as any" />

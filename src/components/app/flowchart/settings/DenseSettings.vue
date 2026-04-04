@@ -4,8 +4,9 @@ import type { DenseLayerType } from "@/types";
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from "@/components/ui/number-field";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useModelStore } from "@/stores/modelStore";
+import LayerParams from "./LayerParams.vue";
 
 const modelStore = useModelStore();
 
@@ -27,6 +28,16 @@ function updateLayer() {
     output_nodes: outputNodes.value,
   });
 }
+
+const learnableParams = computed(() => {
+  return inputNodes.value * outputNodes.value;
+});
+
+const outputShape = computed(() => {
+  return `(
+    1, ${outputNodes.value}
+)`;
+});
 </script>
 <template>
   <div class="grid flex-1 grow auto-rows-min gap-6 py-10">
@@ -65,5 +76,6 @@ function updateLayer() {
         </SelectContent>
       </Select>
     </div>
+    <LayerParams :learnable-params="learnableParams" :output-shape="outputShape" />
   </div>
 </template>

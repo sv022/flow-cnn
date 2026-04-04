@@ -2,8 +2,9 @@
 import { Label } from "@/components/ui/label";
 import type { PoolingLayerType } from "@/types";
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from "@/components/ui/number-field";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useModelStore } from "@/stores/modelStore";
+import LayerParams from "./LayerParams.vue";
 
 const modelStore = useModelStore();
 
@@ -30,6 +31,14 @@ function updateLayer() {
     stride: stride.value,
   });
 }
+
+const outputShape = computed(() => {
+  return `(
+    ${Math.floor((layerSize.value - pool.value) / stride.value + 1)},
+    ${Math.floor((layerSize.value - pool.value) / stride.value + 1)},
+    ${channels.value}
+)`;
+});
 </script>
 <template>
   <div class="grid flex-1 grow auto-rows-min gap-6 py-10">
@@ -82,5 +91,6 @@ function updateLayer() {
         </NumberFieldContent>
       </NumberField>
     </div>
+    <LayerParams :learnable-params="0" :output-shape="outputShape" />
   </div>
 </template>
