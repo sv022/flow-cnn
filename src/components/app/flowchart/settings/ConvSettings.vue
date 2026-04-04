@@ -24,6 +24,9 @@ const activation = ref<string>("ReLU");
 const activationOptions = ["ReLU", "Sigmoid", "Tanh"];
 
 function updateLayer() {
+  if (layerSize.value < kernelSize.value) {
+    layerSize.value = kernelSize.value;
+  }
   modelStore.updateLayer(props.id, {
     ...props.layer,
     input_width: layerSize.value,
@@ -41,14 +44,14 @@ function updateLayer() {
     <div class="grid gap-3">
       <Label>Input size</Label>
       <div class="flex space-x-2">
-        <NumberField id="conv-settings-input-width" :default-value="props.layer.input_width" :min="3" :max="512" v-model="layerSize" @update:model-value="updateLayer">
+        <NumberField id="conv-settings-input-width" :default-value="props.layer.input_width" :min="kernelSize" :max="512" v-model="layerSize" @update:model-value="updateLayer">
           <NumberFieldContent>
             <NumberFieldDecrement />
             <NumberFieldInput />
             <NumberFieldIncrement />
           </NumberFieldContent>
         </NumberField>
-        <NumberField id="conv-settings-input-height" :default-value="props.layer.input_height" :min="3" :max="512" v-model="layerSize" @update:model-value="updateLayer">
+        <NumberField id="conv-settings-input-height" :default-value="props.layer.input_height" :min="kernelSize" :max="512" v-model="layerSize" @update:model-value="updateLayer">
           <NumberFieldContent>
             <NumberFieldDecrement />
             <NumberFieldInput />

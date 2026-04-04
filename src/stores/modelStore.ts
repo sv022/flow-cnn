@@ -81,7 +81,7 @@ export const useModelStore = defineStore("model", () => {
     nodes.push({
       id: `add-end`,
       type: "add-layer",
-      position: { x: currentX - 100, y: 0 },
+      position: { x: currentX + 100 * renderStore.layerSpacingCoef, y: 0 },
     });
 
     return nodes;
