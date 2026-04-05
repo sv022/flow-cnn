@@ -15,7 +15,7 @@ const props = defineProps<{
 const renderStore = useRenderStore();
 
 const filterPos = computed(() => {
-  const offset = renderStore.offset * (props.channels - 1) + Math.floor(renderStore.featureScale * props.size * 0.66);
+  const offset = renderStore.offset * (props.channels - 1) + Math.floor(renderStore.featureScale * props.size * 0.66) - props.kernelSize * renderStore.featureScale * 0.66;
   const top = offset;
   const left = top;
 
