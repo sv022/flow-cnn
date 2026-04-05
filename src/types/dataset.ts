@@ -8,4 +8,5 @@ export interface Dataset {
   imageSrc?: string;
   trainSize: number;
   testSize: number;
+  imageSize: number[];
 }

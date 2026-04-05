@@ -44,3 +44,11 @@ export interface AddLayerAction {
   type: "add-layer";
   position: { x: number; y: number };
 }
+
+export interface InputLayer {
+  id: string;
+  position: { x: number; y: number };
+  labelName: string;
+  labelParams: string;
+  type: "input-layer";
+}

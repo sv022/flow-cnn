@@ -102,6 +102,7 @@ export const mockDatasets = [
     icon: "Pencil",
     trainSize: 60000,
     testSize: 10000,
+    imageSize: [28, 28, 1],
   },
   {
     id: "2",
@@ -113,6 +114,7 @@ export const mockDatasets = [
     icon: "Handbag",
     trainSize: 60000,
     testSize: 10000,
+    imageSize: [28, 28, 1],
   },
   {
     id: "3",
@@ -124,5 +126,6 @@ export const mockDatasets = [
     icon: "Image",
     trainSize: 50000,
     testSize: 10000,
+    imageSize: [32, 32, 3],
   },
 ] as Dataset[];

@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import type { Layer, AddLayerAction, LayerType } from "@/types";
+import type { Layer, AddLayerAction, LayerType, Dataset, InputLayer } from "@/types";
 import { mockLayers } from "@/utils/mock";
 import { getLabelsFromParams, getNewLayerParams } from "@/utils/newLayer";
 import { useRenderStore } from "./renderStore";
@@ -14,6 +14,8 @@ export const useModelStore = defineStore("model", () => {
 
   const validationPending = ref(false);
   const validationAlerts = ref<ValidationAlert[]>([]);
+
+  const selectedDataset = ref<Dataset | null>(null);
 
   const addLayer = (addId: string, type: LayerType) => {
     let newLayerParams = {} as Layer["params"];
@@ -78,13 +80,31 @@ export const useModelStore = defineStore("model", () => {
       validationPending.value = false;
     }, 1000);
 
-    validationAlerts.value = _validateModel(layers.value);
+    validationAlerts.value = _validateModel(layers.value, selectedDataset.value);
+  };
+
+  const setDataset = (dataset: Dataset) => {
+    selectedDataset.value = dataset;
+  };
+
+  const resetDataset = () => {
+    selectedDataset.value = null;
   };
 
   const modelNodes = computed(() => {
-    const nodes = [] as (Layer | AddLayerAction)[];
+    const nodes = [] as (Layer | AddLayerAction | InputLayer)[];
 
     let currentX = 0;
+
+    if (selectedDataset.value) {
+      nodes.push({
+        id: `input-layer`,
+        type: "input-layer",
+        position: { x: -500, y: 0 },
+        labelName: selectedDataset.value.name,
+        labelParams: `${selectedDataset.value.imageSize[0]}x${selectedDataset.value.imageSize[1]}x${selectedDataset.value.imageSize[2]}`,
+      });
+    }
 
     nodes.push({
       id: `add-start`,
@@ -121,10 +141,13 @@ export const useModelStore = defineStore("model", () => {
     modelNodes,
     validationPending,
     validationAlerts,
+    selectedDataset,
     addLayer,
     removeLayer,
     updateLayer,
     updateLayerLabel,
     validateModel,
+    setDataset,
+    resetDataset,
   };
 });

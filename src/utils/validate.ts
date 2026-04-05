@@ -1,4 +1,15 @@
-import { AlertType, type ConvolutionLayerType, type DenseLayerType, type Layer, LayerType, type PoolingLayerType, type ValidationAlert, type ValidationError, type ValidationWarning } from "@/types";
+import {
+  AlertType,
+  type ConvolutionLayerType,
+  type Dataset,
+  type DenseLayerType,
+  type Layer,
+  LayerType,
+  type PoolingLayerType,
+  type ValidationAlert,
+  type ValidationError,
+  type ValidationWarning,
+} from "@/types";
 
 interface DimensionState {
   width: number;
@@ -6,7 +17,7 @@ interface DimensionState {
   channels: number;
 }
 
-export const _validateModel = (layers: Layer[]): ValidationAlert[] => {
+export const _validateModel = (layers: Layer[], dataset: Dataset | null): ValidationAlert[] => {
   const alerts: ValidationAlert[] = [];
 
   if (layers.length === 0) {
@@ -22,6 +33,16 @@ export const _validateModel = (layers: Layer[]): ValidationAlert[] => {
     channels: 0,
   };
 
+  if (dataset) {
+    current = {
+      width: dataset.imageSize[0]!,
+      height: dataset.imageSize[1]!,
+      channels: dataset.imageSize[2]!,
+    };
+    alerts.push(...validateLayerInput(layers, 0, current));
+    if (alerts.length > 0) return alerts;
+  }
+
   if (layers[0]!.params.type === LayerType.Dense) {
     current = {
       width: 1,
@@ -34,7 +55,6 @@ export const _validateModel = (layers: Layer[]): ValidationAlert[] => {
       height: layers[0]!.params.input_height,
       channels: layers[0]!.params.channels,
     };
-    alerts.push(...validateLayerInput(layers, 0, current));
   }
 
   for (let i = 0; i < layers.length; i++) {

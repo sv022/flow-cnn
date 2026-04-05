@@ -2,11 +2,17 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item";
+import { useModelStore } from "@/stores/modelStore";
 import type { Dataset } from "@/types";
+import { computed } from "vue";
 
 const props = defineProps<{
   dataset: Dataset;
 }>();
+
+const modelStore = useModelStore();
+
+const isSelected = computed(() => modelStore.selectedDataset?.id === props.dataset.id);
 </script>
 
 <template>
@@ -29,6 +35,8 @@ const props = defineProps<{
       </Item>
     </div>
     <img :src="props.dataset.imageSrc ? props.dataset.imageSrc : 'https://raw.githubusercontent.com/sv022/MockDB/refs/heads/main/assets/placeholder.png'" class="w-full" />
-    <Button class="w-full bg-taupe-500 hover:bg-taupe-700 mt-8 font-semibold">Add to project</Button>
+    <Button class="w-full bg-taupe-500 hover:bg-taupe-700 mt-8 font-semibold" :disabled="isSelected" @click="modelStore.setDataset(props.dataset)">{{
+      isSelected ? "Added to project" : "Add to project"
+    }}</Button>
   </div>
 </template>
