@@ -4,11 +4,16 @@ import type { Layer, AddLayerAction, LayerType } from "@/types";
 import { mockLayers } from "@/utils/mock";
 import { getLabelsFromParams, getNewLayerParams } from "@/utils/newLayer";
 import { useRenderStore } from "./renderStore";
+import type { ValidationAlert } from "@/types/validation";
+import { _validateModel } from "@/utils/validate";
 
 export const useModelStore = defineStore("model", () => {
   const layers = ref<Layer[]>(mockLayers as Layer[]);
 
   const renderStore = useRenderStore();
+
+  const validationPending = ref(false);
+  const validationAlerts = ref<ValidationAlert[]>([]);
 
   const addLayer = (addId: string, type: LayerType) => {
     let newLayerParams = {} as Layer["params"];
@@ -67,6 +72,15 @@ export const useModelStore = defineStore("model", () => {
     }
   };
 
+  const validateModel = () => {
+    validationPending.value = true;
+    setTimeout(() => {
+      validationPending.value = false;
+    }, 1000);
+
+    validationAlerts.value = _validateModel(layers.value);
+  };
+
   const modelNodes = computed(() => {
     const nodes = [] as (Layer | AddLayerAction)[];
 
@@ -105,9 +119,12 @@ export const useModelStore = defineStore("model", () => {
   return {
     layers,
     modelNodes,
+    validationPending,
+    validationAlerts,
     addLayer,
     removeLayer,
     updateLayer,
     updateLayerLabel,
+    validateModel,
   };
 });

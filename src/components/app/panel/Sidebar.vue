@@ -2,13 +2,12 @@
 <!-- eslint-disable vue/block-lang -->
 <script setup lang="ts">
 import { cn } from "@/lib/utils";
-import SidebarToggle from "./SidebarToggle.vue";
 import { RouterLink } from "vue-router";
 import { Button } from "@/components/ui/button";
 import AppPanelMenu from "./Menu.vue";
 import { useSidebar } from "@/utils/sidebar";
 import FlowCnnLogo from "./FlowCnnLogo.vue";
-const { isOpen, setOpen } = useSidebar();
+const { isOpen } = useSidebar();
 </script>
 
 <template>

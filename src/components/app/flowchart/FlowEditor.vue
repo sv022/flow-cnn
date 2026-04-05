@@ -4,10 +4,11 @@ import { VueFlow, useVueFlow } from "@vue-flow/core";
 import { Background } from "@vue-flow/background";
 import { ControlButton, Controls } from "@vue-flow/controls";
 import { MiniMap } from "@vue-flow/minimap";
-import { LucideRefreshCcw, LucideSun, LucideMoon, LucideTerminal } from "lucide-vue-next";
+import { LucideRefreshCcw, LucideSun, LucideMoon, LucideTerminal, LucideScanSearch } from "lucide-vue-next";
 import { useModelStore } from "@/stores/modelStore";
 import LayerNode from "./LayerNode.vue";
 import AddLayerNode from "./AddLayerNode.vue";
+import ValidateDialog from "./validate/ValidateDialog.vue";
 
 /**
  * `useVueFlow` provides:
@@ -111,6 +112,11 @@ function toggleDarkMode() {
         <LucideTerminal class="h-4 w-4" />
       </ControlButton>
     </Controls>
+    <ValidateDialog>
+      <Controls class="bg-mint-700 p-4 rounded-xl" position="bottom-left" @click="modelStore.validateModel">
+        <LucideScanSearch class="h-5 w-5 stroke-accent" />
+      </Controls>
+    </ValidateDialog>
   </VueFlow>
 </template>
 <style scoped>

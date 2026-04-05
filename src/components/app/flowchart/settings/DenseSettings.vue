@@ -43,7 +43,7 @@ const outputShape = computed(() => {
   <div class="grid flex-1 grow auto-rows-min gap-6 py-10">
     <div class="grid gap-3">
       <Label for="dense-settings-input-nodes">Input Nodes</Label>
-      <NumberField id="dense-settings-input-nodes" :default-value="props.layer.input_nodes" :min="1" :max="1024" v-model="inputNodes" @update:model-value="updateLayer">
+      <NumberField id="dense-settings-input-nodes" :default-value="props.layer.input_nodes" :min="1" :max="16384" v-model="inputNodes" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
           <NumberFieldInput />
@@ -53,7 +53,7 @@ const outputShape = computed(() => {
     </div>
     <div class="grid gap-3">
       <Label for="dense-settings-output-nodes">Output Nodes</Label>
-      <NumberField id="dense-settings-output-nodes" :default-value="props.layer.output_nodes" :min="1" :max="1024" v-model="outputNodes" @update:model-value="updateLayer">
+      <NumberField id="dense-settings-output-nodes" :default-value="props.layer.output_nodes" :min="1" :max="16384" v-model="outputNodes" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
           <NumberFieldInput />

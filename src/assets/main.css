@@ -43,6 +43,7 @@ body {
   --color-destructive-foreground: var(--destructive-foreground);
   --color-positive: var(--positive);
   --color-positive-foreground: var(--positive-foreground);
+  --color-warning: var(--warning);
 
   --color-highlight: var(--highlight);
 
@@ -53,6 +54,10 @@ body {
   --color-convolution: var(--color-convolution);
   --color-pooling: var(--color-pooling);
   --color-dense: var(--color-dense);
+
+  --color-mint-200: var(--color-mint-200);
+  --color-mint-500: var(--color-mint-500);
+  --color-mint-700: var(--color-mint-700);
 
   --color-taupe-500: var(--color-taupe-500);
   --color-taupe-600: var(--color-taupe-600);
@@ -93,7 +98,7 @@ body {
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
 
-  --destructive: rgba(244, 67, 54, 0.1);
+  --destructive: rgba(244, 67, 54, 0.08);
   --destructive-foreground: rgb(244, 67, 54);
 
   --positive: rgba(99, 169, 97, 0.1);
