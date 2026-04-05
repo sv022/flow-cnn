@@ -1,4 +1,4 @@
-import { LayerType, type Layer } from "@/types";
+import { LayerType, type Dataset, type Layer } from "@/types";
 
 export const mockLayers = [
   {
@@ -90,3 +90,39 @@ export const mockLayers = [
     },
   },
 ] as Layer[];
+
+export const mockDatasets = [
+  {
+    id: "1",
+    name: "MNIST",
+    description: "The MNIST database of handwritten digits",
+    tags: ["image", "classification", "digits", "handwritten"],
+    difficulty: "standard",
+    imageSrc: "https://storage.googleapis.com/kaggle-datasets-images/9289611/14544679/fe94b602332b8ff8404ac8a251fd4d10/dataset-cover.png?t=2026-01-19-07-14-25",
+    icon: "Pencil",
+    trainSize: 60000,
+    testSize: 10000,
+  },
+  {
+    id: "2",
+    name: "Fashion-MNIST",
+    description: "The Fashion-MNIST dataset",
+    tags: ["image", "classification", "clothing", "fashion"],
+    difficulty: "standard",
+    imageSrc: "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/refs/heads/master/doc/img/fashion-mnist-sprite.png",
+    icon: "Handbag",
+    trainSize: 60000,
+    testSize: 10000,
+  },
+  {
+    id: "3",
+    name: "CIFAR-10",
+    description: "The CIFAR-10 dataset",
+    tags: ["image", "classification", "computer-vision"],
+    difficulty: "standard",
+    imageSrc: "https://storage.googleapis.com/kaggle-media/competitions/kaggle/3649/media/cifar-10.png",
+    icon: "Image",
+    trainSize: 50000,
+    testSize: 10000,
+  },
+] as Dataset[];
