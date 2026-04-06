@@ -118,7 +118,7 @@ function toggleDarkMode() {
       </ControlButton>
     </Controls>
     <ValidateDialog>
-      <Controls class="bg-mint-700 p-4 rounded-xl" position="bottom-left" @click="modelStore.validateModel">
+      <Controls class="bg-mint-700 hover:bg-mint-800 cursor-pointer p-4 rounded-xl" position="bottom-left" @click="modelStore.validateModel">
         <LucideScanSearch class="h-5 w-5 stroke-accent" />
       </Controls>
     </ValidateDialog>
