@@ -1,4 +1,5 @@
 import router from "@/router";
+import { createSharedComposable } from "@vueuse/core";
 import { ref } from "vue";
 
 interface Tab {
@@ -25,7 +26,9 @@ export const appTabs = [
   },
 ] as Tab[];
 
-export function useTabs() {
+export const useSharedTabs = createSharedComposable(useTabs);
+
+function useTabs() {
   const activeTab = ref<Tab>(appTabs[0]!);
 
   const setTab = (tab: Tab) => {

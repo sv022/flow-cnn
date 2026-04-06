@@ -3,10 +3,15 @@
 import { Button } from "@/components/ui/button";
 import ColorModeToggle from "../ColorModeToggle.vue";
 import UserDropdown from "./UserDropdown.vue";
-import { appTabs, useTabs } from "@/utils/tabs";
+import { appTabs, useSharedTabs } from "@/utils/tabs";
 import { cn } from "@/lib/utils";
 
-const { activeTab, setTab } = useTabs();
+const { activeTab, setTab } = useSharedTabs();
+
+const trainTab = {
+  name: "train",
+  path: "/train",
+};
 </script>
 
 <template>
@@ -18,6 +23,10 @@ const { activeTab, setTab } = useTabs();
         </Button>
       </div>
       <div class="flex flex-1 items-center space-x-2 justify-end">
+        <div class="lg:mx-24 lg:space-x-4">
+          <Button class="bg-mint-700/90 hover:bg-mint-700" @click="setTab(trainTab)">Train model</Button>
+          <Button variant="outline">Export</Button>
+        </div>
         <ColorModeToggle />
         <UserDropdown />
       </div>

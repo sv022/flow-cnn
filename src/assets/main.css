@@ -65,7 +65,7 @@ body {
   --color-taupe-700: var(--color-taupe-700);
 
   --color-border: var(--border);
-  --color-input: var(--input);
+  --color-input: var(--color-input-l);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -153,7 +153,7 @@ body {
   --color-taupe-800: #403d36;
   --color-taupe-900: #201e1b;
 
-  --color-input: #7D929A;
+  --color-input-l: #799098;
   --color-convolution: #7F938A;
   --color-pooling: #8E8D9E;
   --color-dense: #9D8A83;

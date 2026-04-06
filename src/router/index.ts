@@ -18,6 +18,12 @@ const router = createRouter({
       meta: { title: "Datasets", layout: DefaultLayout },
     },
     {
+      path: "/train",
+      name: "train",
+      component: () => import("../views/TrainView.vue"),
+      meta: { title: "Training setup", layout: DefaultLayout },
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "Page not found",
       component: PageNotFound,

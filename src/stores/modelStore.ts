@@ -17,6 +17,12 @@ export const useModelStore = defineStore("model", () => {
 
   const selectedDataset = ref<Dataset | null>(null);
 
+  const trainHyperparams = ref({
+    epochs: 10,
+    learning_rate: 0.001,
+    loss_function: "MSE",
+  });
+
   const addLayer = (addId: string, type: LayerType) => {
     let newLayerParams = {} as Layer["params"];
     let baseLayerParams = {} as Layer["params"];
@@ -91,6 +97,27 @@ export const useModelStore = defineStore("model", () => {
     selectedDataset.value = null;
   };
 
+  const trainableParams = computed(() => {
+    let params = 0;
+    layers.value.forEach((layer) => {
+      if (layer.params.type === "conv") {
+        params += layer.params.num_kernels * layer.params.kernel_size * layer.params.kernel_size * layer.params.channels;
+      } else if (layer.params.type === "dense") {
+        params += layer.params.input_nodes * layer.params.output_nodes;
+      }
+    });
+    return params;
+  });
+
+  const checkReadyForTrain = () => {
+    validateModel();
+    return layers.value.length > 0 && validationAlerts.value.length === 0;
+  };
+
+  const runTrain = () => {
+    // TODO
+  };
+
   const modelNodes = computed(() => {
     const nodes = [] as (Layer | AddLayerAction | InputLayer)[];
 
@@ -142,6 +169,8 @@ export const useModelStore = defineStore("model", () => {
     validationPending,
     validationAlerts,
     selectedDataset,
+    trainableParams,
+    trainHyperparams,
     addLayer,
     removeLayer,
     updateLayer,
@@ -149,5 +178,7 @@ export const useModelStore = defineStore("model", () => {
     validateModel,
     setDataset,
     resetDataset,
+    checkReadyForTrain,
+    runTrain,
   };
 });
