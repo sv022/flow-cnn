@@ -5,7 +5,7 @@ import LayoutTree from "./LayoutTree.vue";
 import RenderParams from "./RenderParams.vue";
 </script>
 <template>
-  <Accordion type="single" collapsible class="w-full" default-value="item-2">
+  <Accordion type="multiple" collapsible class="w-full" default-value="item-2">
     <AccordionItem value="item-1">
       <AccordionTrigger class="text-sm text-charcoal">
         <span class="flex items-center">
