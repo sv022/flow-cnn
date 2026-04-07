@@ -11,13 +11,15 @@ const datasetsToDisplay = mockDatasets.slice(0, 2);
 
 <template>
   <div>
-    <SectionHeader title="Dataset selection" />
+    <SectionHeader>
+      {{ $t("train.dataset.title") }}
+    </SectionHeader>
     <div class="flex space-x-8 py-8">
       <DatasetCardCompact v-for="dataset in datasetsToDisplay" :key="dataset.name" :dataset="dataset" />
       <div class="flex items-center justify-center size-48">
         <RouterLink to="/datasets">
           <Button variant="ghost">
-            <p class="text-sm text-input">View all datasets</p>
+            <p class="text-sm text-input">{{ $t("train.dataset.viewAll") }}</p>
             <LucideArrowRight class="w-6 h-6 stroke-input stroke-3" />
           </Button>
         </RouterLink>

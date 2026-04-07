@@ -34,7 +34,7 @@ const layerLabel = computed({
       <AccordionContent>
         <div>
           <span class="flex items-center space-x-4">
-            <Label class="text-charcoal text-nowrap">Label</Label>
+            <Label class="text-charcoal text-nowrap">{{ $t("sidebar.layout.layerLabel") }}</Label>
             <Input v-model="layerLabel" />
           </span>
         </div>

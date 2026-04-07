@@ -42,7 +42,7 @@ const outputShape = computed(() => {
 <template>
   <div class="grid flex-1 grow auto-rows-min gap-6 py-10">
     <div class="grid gap-3">
-      <Label for="dense-settings-input-nodes">Input Nodes</Label>
+      <Label for="dense-settings-input-nodes">{{ $t("flowchart.settings.inputNodes") }}</Label>
       <NumberField id="dense-settings-input-nodes" :default-value="props.layer.input_nodes" :min="1" :max="16384" v-model="inputNodes" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -52,7 +52,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3">
-      <Label for="dense-settings-output-nodes">Output Nodes</Label>
+      <Label for="dense-settings-output-nodes">{{ $t("flowchart.settings.outputNodes") }}</Label>
       <NumberField id="dense-settings-output-nodes" :default-value="props.layer.output_nodes" :min="1" :max="16384" v-model="outputNodes" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -62,7 +62,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3 mt-3">
-      <Label for="dense-settings-activation">Activation</Label>
+      <Label for="dense-settings-activation">{{ $t("flowchart.settings.activation") }}</Label>
       <Select id="dense-settings-activation" v-model="activation" @update:model-value="updateLayer">
         <SelectTrigger>
           <SelectValue placeholder="Sigmoid" />

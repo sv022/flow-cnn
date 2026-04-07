@@ -10,7 +10,7 @@ import RenderParams from "./RenderParams.vue";
       <AccordionTrigger class="text-sm text-charcoal">
         <span class="flex items-center">
           <LucideSettings2 class="mr-2 h-4 w-4 stroke-highlight" />
-          General settings
+          {{ $t("sidebar.general.title") }}
         </span>
       </AccordionTrigger>
       <AccordionContent>
@@ -21,7 +21,7 @@ import RenderParams from "./RenderParams.vue";
       <AccordionTrigger class="text-sm text-text-charcoal">
         <span class="flex items-center">
           <LucideNetwork class="mr-2 h-4 w-4 stroke-highlight" />
-          Layout
+          {{ $t("sidebar.layout.title") }}
         </span>
       </AccordionTrigger>
       <AccordionContent>

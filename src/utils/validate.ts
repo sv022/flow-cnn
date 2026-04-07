@@ -9,6 +9,7 @@ import {
   type ValidationAlert,
   type ValidationError,
   type ValidationWarning,
+  WarningType,
 } from "@/types";
 
 interface DimensionState {
@@ -143,7 +144,7 @@ const validateArchitecture = (layers: Layer[], index: number, current: Dimension
     if (params.kernel_size > 7) {
       warnings.push({
         type: AlertType.Warning,
-        body: { layerLabel: layer!.labelName, text: "Kernel size > 7 is not recommended. Use Pooling layer instead or split into multiple layers" } as ValidationWarning,
+        body: { layerLabel: layer!.labelName, type: WarningType.KernelTooBig } as ValidationWarning,
       });
     }
   }
@@ -151,7 +152,7 @@ const validateArchitecture = (layers: Layer[], index: number, current: Dimension
   if (params.type === LayerType.Dense && params.input_nodes < next.height * 2) {
     warnings.push({
       type: AlertType.Warning,
-      body: { layerLabel: layer!.labelName, text: `Layer nodes (${params.input_nodes}) is too small for next input` } as ValidationWarning,
+      body: { layerLabel: layer!.labelName, type: WarningType.DenseTooSmall, expected: `${next.height}`, actual: `${params.input_nodes}` } as ValidationWarning,
     });
   }
 

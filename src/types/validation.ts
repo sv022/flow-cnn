@@ -1,9 +1,18 @@
 export enum AlertType {
-  Error = "Validation error",
-  Warning = "Architecture warning",
+  Error = "error",
+  Warning = "architectureWarning",
+}
+
+export enum ErrorType {
+  dimensions = "dimensions",
+}
+export enum WarningType {
+  KernelTooBig = "warningKernelTooBig",
+  DenseTooSmall = "warningDenseTooSmall",
 }
 
 export interface ValidationError {
+  type: ErrorType;
   layerLabelFrom: string;
   layerLabelTo: string;
   expected: string;
@@ -12,7 +21,9 @@ export interface ValidationError {
 
 export interface ValidationWarning {
   layerLabel: string;
-  text: string;
+  type: WarningType;
+  actual?: string;
+  expected?: string;
 }
 
 export interface ValidationAlert {

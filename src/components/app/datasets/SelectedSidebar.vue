@@ -5,6 +5,9 @@ import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/i
 import { useModelStore } from "@/stores/modelStore";
 import type { Dataset } from "@/types";
 import { computed } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { tm } = useI18n();
 
 const props = defineProps<{
   dataset: Dataset;
@@ -18,7 +21,7 @@ const isSelected = computed(() => modelStore.selectedDataset?.id === props.datas
 <template>
   <div class="w-96 ml-auto h-full p-4 border border-taupe-700/10 shadow rounded-xl -translate-y-12">
     <span class="flex items-center justify-between">
-      <p class="text-charcoal font-semibold">Dataset preview</p>
+      <p class="text-charcoal font-semibold">{{ $t("datasets.preview") }}</p>
       <slot />
     </span>
     <div>
@@ -36,7 +39,7 @@ const isSelected = computed(() => modelStore.selectedDataset?.id === props.datas
     </div>
     <img :src="props.dataset.imageSrc ? props.dataset.imageSrc : 'https://raw.githubusercontent.com/sv022/MockDB/refs/heads/main/assets/placeholder.png'" class="w-full" />
     <Button class="w-full bg-taupe-500 hover:bg-taupe-700 mt-8 font-semibold" :disabled="isSelected" @click="modelStore.setDataset(props.dataset)">{{
-      isSelected ? "Added to project" : "Add to project"
+      isSelected ? tm("datasets.added") : tm("datasets.add")
     }}</Button>
   </div>
 </template>

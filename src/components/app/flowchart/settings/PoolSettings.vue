@@ -43,7 +43,7 @@ const outputShape = computed(() => {
 <template>
   <div class="grid flex-1 grow auto-rows-min gap-6 py-10">
     <div class="grid gap-3">
-      <Label>Input size</Label>
+      <Label>{{ $t("flowchart.settings.inputSize") }}</Label>
       <div class="flex space-x-2">
         <NumberField id="pool-settings-input-width" :default-value="props.layer.input_width" :min="pool" :max="512" v-model="layerSize" @update:model-value="updateLayer">
           <NumberFieldContent>
@@ -62,7 +62,7 @@ const outputShape = computed(() => {
       </div>
     </div>
     <div class="grid gap-3">
-      <Label for="pool-settings-channels">Channels</Label>
+      <Label for="pool-settings-channels">{{ $t("flowchart.settings.channels") }}</Label>
       <NumberField id="pool-settings-channels" :default-value="props.layer.channels" :min="1" :max="128" v-model="channels" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -72,7 +72,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3">
-      <Label for="pool-settings-pool">Pool size</Label>
+      <Label for="pool-settings-pool">{{ $t("flowchart.settings.pool") }}</Label>
       <NumberField id="pool-settings-pool" :default-value="props.layer.pool" :min="2" :max="4" :step="2" :step-snapping="true" v-model="pool" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -82,7 +82,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3">
-      <Label for="pool-settings-stride">Stride</Label>
+      <Label for="pool-settings-stride">{{ $t("flowchart.settings.stride") }}</Label>
       <NumberField id="pool-settings-stride" :default-value="props.layer.stride" :min="1" :max="3" v-model="stride" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />

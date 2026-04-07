@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuGroup } from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { RouterLink } from 'vue-router';
-import { LucideLayoutGrid, LucideLogOut, LucideUser } from 'lucide-vue-next';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuGroup } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { RouterLink } from "vue-router";
+import { LucideLayoutGrid, LucideLogOut, LucideUser } from "lucide-vue-next";
 </script>
 
 <template>
-<DropdownMenu>
-  <DropdownMenuTrigger as-child>
-    <Button variant="outline" class="relative h-8 w-8 rounded-full">
-      <Avatar class="h-8 w-8">
-        <AvatarImage src="#" alt="Avatar" />
-        <AvatarFallback class="bg-transparent">
-          KD
-        </AvatarFallback>
-      </Avatar>
-    </Button>
-  </DropdownMenuTrigger>
-  <!-- <TooltipProvider>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button variant="outline" class="relative h-8 w-8 rounded-full">
+        <Avatar class="h-8 w-8">
+          <AvatarImage src="#" alt="Avatar" />
+          <AvatarFallback class="bg-transparent"> KD </AvatarFallback>
+        </Avatar>
+      </Button>
+    </DropdownMenuTrigger>
+    <!-- <TooltipProvider>
       <Tooltip>
         <TooltipTrigger as-child>
 
@@ -28,37 +26,33 @@ import { LucideLayoutGrid, LucideLogOut, LucideUser } from 'lucide-vue-next';
         </TooltipContent>
       </Tooltip>
     </TooltipProvider> -->
-  <DropdownMenuContent class="w-56" align="end">
-    <DropdownMenuLabel class="font-normal">
-      <div class="flex flex-col space-y-1">
-        <p class="text-sm font-medium leading-none">
-          John Doe
-        </p>
-        <p class="text-xs leading-none text-muted-foreground">
-          johndoe@example.com
-        </p>
-      </div>
-    </DropdownMenuLabel>
-    <DropdownMenuSeparator />
-    <DropdownMenuGroup>
-      <DropdownMenuItem class="hover:cursor-pointer" as-child>
-        <RouterLink to="/">
-          <LucideLayoutGrid class="w-4 h-4 mr-3 text-muted-foreground" />
-          Dashboard
-        </RouterLink>
+    <DropdownMenuContent class="w-56" align="end">
+      <DropdownMenuLabel class="font-normal">
+        <div class="flex flex-col space-y-1">
+          <p class="text-sm font-medium leading-none">user-1e41f</p>
+          <p class="text-xs leading-none text-muted-foreground">basic</p>
+        </div>
+      </DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuGroup>
+        <DropdownMenuItem class="hover:cursor-pointer" as-child>
+          <RouterLink to="/">
+            <LucideLayoutGrid class="w-4 h-4 mr-3 text-muted-foreground" />
+            {{ $t("header.user.saved") }}
+          </RouterLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem class="hover:cursor-pointer" as-child>
+          <RouterLink to="/">
+            <LucideUser class="w-4 h-4 mr-3 text-muted-foreground" />
+            {{ $t("header.user.account") }}
+          </RouterLink>
+        </DropdownMenuItem>
+      </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem class="hover:cursor-pointer">
+        <LucideLogOut class="w-4 h-4 mr-3 text-muted-foreground" />
+        {{ $t("header.user.logout") }}
       </DropdownMenuItem>
-      <DropdownMenuItem class="hover:cursor-pointer" as-child>
-        <RouterLink to="/">
-          <LucideUser class="w-4 h-4 mr-3 text-muted-foreground" />
-          Account
-        </RouterLink>
-      </DropdownMenuItem>
-    </DropdownMenuGroup>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem class="hover:cursor-pointer">
-      <LucideLogOut class="w-4 h-4 mr-3 text-muted-foreground" />
-      Sign out
-    </DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>
+    </DropdownMenuContent>
+  </DropdownMenu>
 </template>

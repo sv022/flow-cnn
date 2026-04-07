@@ -9,19 +9,19 @@ interface Tab {
 
 export const appTabs = [
   {
-    name: "Model",
+    name: "model",
     path: "/",
   },
   {
-    name: "Datasets",
+    name: "datasets",
     path: "/datasets",
   },
   {
-    name: "Tutorials",
+    name: "tutorials",
     path: "/tutorials",
   },
   {
-    name: "Saved models",
+    name: "saved",
     path: "/saved",
   },
 ] as Tab[];

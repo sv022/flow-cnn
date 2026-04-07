@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/ui/item";
 import { LucideCircleAlert, LucideTriangleAlert } from "lucide-vue-next";
-import { AlertType, type ValidationAlert, type ValidationError, type ValidationWarning } from "@/types/validation";
+import { AlertType, WarningType, type ValidationAlert, type ValidationError, type ValidationWarning } from "@/types/validation";
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps<{
   alert: ValidationAlert;
 }>();
+
+const { tm } = useI18n();
 
 function getAlertItemClasses(type: AlertType) {
   switch (type) {
@@ -25,12 +29,34 @@ function getTitleColor(type: AlertType) {
   }
 }
 
+const alertTitle = computed(() => {
+  return tm(`flowchart.validation.alert.${props.alert.type}.title`);
+});
+
+const alertBody = computed(() => {
+  switch (props.alert.type) {
+    case AlertType.Error:
+      return formatError(props.alert.body as ValidationError);
+    case AlertType.Warning:
+      return formatWarning(props.alert.body as ValidationWarning);
+    default:
+      return "";
+  }
+});
+
 function formatError(body: ValidationError) {
-  return `Incompatible dimensions: ${body.layerLabelFrom} ${body.actual} -> ${body.layerLabelTo}. Expected: ${body.expected}`;
+  return tm(`flowchart.validation.alert.error.body.dimensions`)
+    .toString()
+    .replace("LABELFROM", body.layerLabelFrom)
+    .replace("LABELTO", body.layerLabelTo)
+    .replace("EXPECTED", body.expected)
+    .replace("ACTUAL", body.actual);
 }
 
 function formatWarning(body: ValidationWarning) {
-  return `${body.layerLabel}: ${body.text}`;
+  if (body.type === WarningType.DenseTooSmall)
+    return tm(`flowchart.validation.alert.architectureWarning.body.${body.type}`).toString().replace("EXPECTED", body.expected!).replace("ACTUAL", body.actual!);
+  return tm(`flowchart.validation.alert.architectureWarning.body.${body.type}`);
 }
 </script>
 
@@ -41,8 +67,8 @@ function formatWarning(body: ValidationWarning) {
       <LucideTriangleAlert v-else class="size-6 stroke-warning -translate-y-1" />
     </ItemMedia>
     <ItemContent>
-      <ItemTitle :class="getTitleColor(props.alert.type)">{{ props.alert.type }}</ItemTitle>
-      <ItemDescription> {{ props.alert.type == AlertType.Error ? formatError(props.alert.body as ValidationError) : formatWarning(props.alert.body as ValidationWarning) }} </ItemDescription>
+      <ItemTitle :class="getTitleColor(props.alert.type)">{{ alertTitle }}</ItemTitle>
+      <ItemDescription class="line-clamp-none"> {{ alertBody }} </ItemDescription>
     </ItemContent>
   </Item>
 </template>

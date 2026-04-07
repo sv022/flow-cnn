@@ -22,7 +22,7 @@ const modelStore = useModelStore();
             <slot />
           </TooltipTrigger>
           <TooltipContent side="top" class="bg-transparent border border-mint-700 text-mint-700">
-            <p>Validate model</p>
+            <p>{{ $t("flowchart.validation.tooltip") }}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
@@ -34,8 +34,8 @@ const modelStore = useModelStore();
             <LucideShieldCheck class="size-6 stroke-mint-700" />
           </ItemMedia>
           <ItemContent>
-            <DialogTitle>Model Validation Result</DialogTitle>
-            <DialogDescription>Check for errors in the model</DialogDescription>
+            <DialogTitle>{{ $t("flowchart.validation.title") }}</DialogTitle>
+            <DialogDescription>{{ $t("flowchart.validation.description") }}</DialogDescription>
           </ItemContent>
         </Item>
       </DialogHeader>
@@ -48,9 +48,11 @@ const modelStore = useModelStore();
       <Separator />
       <DialogFooter>
         <DialogClose as-child>
-          <Button variant="outline"> Cancel </Button>
+          <Button variant="outline"> {{ $t("flowchart.validation.cancel") }} </Button>
         </DialogClose>
-        <Button class="bg-mint-700 hover:bg-mint-500" type="submit" :disabled="modelStore.validationPending || modelStore.validationAlerts.length === 0"> Save changes </Button>
+        <Button class="bg-mint-700 hover:bg-mint-500" type="submit" :disabled="modelStore.validationPending || modelStore.validationAlerts.length === 0">
+          {{ $t("flowchart.validation.save") }}
+        </Button>
       </DialogFooter>
     </DialogContent>
   </Dialog>

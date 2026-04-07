@@ -19,13 +19,13 @@ const trainTab = {
     <div class="mx-4 sm:mx-8 flex h-14 items-center">
       <div class="flex items-center space-x-4 lg:space-x-0">
         <Button v-for="tab in appTabs" :key="tab.name" @click="setTab(tab)" variant="ghost">
-          <p :class="cn('text-muted-foreground text-sm p-1', activeTab.name === tab.name ? 'border-b border-input' : '')">{{ tab.name }}</p>
+          <p :class="cn('text-muted-foreground text-sm p-1', activeTab.name === tab.name ? 'border-b border-input' : '')">{{ $t(`header.navbar.${tab.name}`) }}</p>
         </Button>
       </div>
       <div class="flex flex-1 items-center space-x-2 justify-end">
         <div class="lg:mx-24 lg:space-x-4">
-          <Button class="bg-mint-700/90 hover:bg-mint-700" @click="setTab(trainTab)">Train model</Button>
-          <Button variant="outline">Export</Button>
+          <Button class="bg-mint-700/90 hover:bg-mint-700" @click="setTab(trainTab)"> {{ $t("header.actions.train") }} </Button>
+          <Button variant="outline">{{ $t("header.actions.export") }}</Button>
         </div>
         <ColorModeToggle />
         <UserDropdown />

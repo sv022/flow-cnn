@@ -23,12 +23,14 @@ const updateParams = () => {
 
 <template>
   <div>
-    <SectionHeader title="Hyperparameters" />
+    <SectionHeader>
+      {{ $t("train.hyperparameters.title") }}
+    </SectionHeader>
     <div class="flex space-x-8 py-4">
       <div class="flex space-x-8">
         <div class="flex flex-col gap-8">
           <span>
-            <Label class="text-charcoal">Epochs</Label>
+            <Label class="text-charcoal">{{ $t("train.hyperparameters.epochs") }}</Label>
             <NumberField class="mt-2" :default-value="epochs" :min="1" :max="200" :step="1" v-model="epochs" @update:model-value="updateParams">
               <NumberFieldContent>
                 <NumberFieldDecrement />
@@ -38,7 +40,7 @@ const updateParams = () => {
             </NumberField>
           </span>
           <span>
-            <Label class="text-charcoal">Learning Rate</Label>
+            <Label class="text-charcoal">{{ $t("train.hyperparameters.learningRate") }}</Label>
             <NumberField class="mt-2" :default-value="learningRate" :min="0.0001" :max="0.5" :step="0.001" v-model="learningRate" @update:model-value="updateParams">
               <NumberFieldContent>
                 <NumberFieldDecrement />
@@ -50,7 +52,7 @@ const updateParams = () => {
         </div>
         <div class="flex flex-col gap-8">
           <span>
-            <Label class="text-charcoal">Loss function</Label>
+            <Label class="text-charcoal">{{ $t("train.hyperparameters.lossFunction") }}</Label>
             <div class="h-2"></div>
             <Select v-model="lossFunction" @update:model-value="updateParams">
               <SelectTrigger class="w-40">

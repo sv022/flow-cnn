@@ -11,7 +11,7 @@ const props = defineProps<{
   <Separator />
   <div>
     <div class="flex justify-between">
-      <p class="text-muted-foreground text-sm">Learnable parameters</p>
+      <p class="text-muted-foreground text-sm">{{ $t("flowchart.settings.learnableParams") }}</p>
       <p class="text-positive-foreground text-sm font-semibold">
         {{ learnableParams }}
       </p>
@@ -19,7 +19,7 @@ const props = defineProps<{
   </div>
   <div>
     <div class="flex justify-between">
-      <p class="text-muted-foreground text-sm">Output shape</p>
+      <p class="text-muted-foreground text-sm">{{ $t("flowchart.settings.outputShape") }}</p>
       <p class="text-carbon text-sm font-semibold">
         {{ outputShape }}
       </p>

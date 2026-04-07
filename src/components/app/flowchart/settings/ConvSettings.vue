@@ -55,7 +55,7 @@ const outputShape = computed(() => {
 <template>
   <div class="grid flex-1 grow auto-rows-min gap-6 py-10">
     <div class="grid gap-3">
-      <Label>Input size</Label>
+      <Label>{{ $t("flowchart.settings.inputSize") }}</Label>
       <div class="flex space-x-2">
         <NumberField id="conv-settings-input-width" :default-value="props.layer.input_width" :min="kernelSize" :max="512" v-model="layerSize" @update:model-value="updateLayer">
           <NumberFieldContent>
@@ -74,7 +74,7 @@ const outputShape = computed(() => {
       </div>
     </div>
     <div class="grid gap-3">
-      <Label for="conv-settings-channels">Channels</Label>
+      <Label for="conv-settings-channels">{{ $t("flowchart.settings.channels") }}</Label>
       <NumberField id="conv-settings-channels" :default-value="props.layer.channels" :min="1" :max="128" v-model="channels" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -84,7 +84,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3 mt-6">
-      <Label>Kernel size</Label>
+      <Label>{{ $t("flowchart.settings.kernelSize") }}</Label>
       <div class="flex space-x-2">
         <NumberField id="conv-settings-kernel-width" :default-value="props.layer.kernel_size" :min="3" :max="11" :step="2" :step-snapping="true" v-model="kernelSize" @update:model-value="updateLayer">
           <NumberFieldContent>
@@ -112,7 +112,7 @@ const outputShape = computed(() => {
       </div>
     </div>
     <div class="grid gap-3">
-      <Label for="conv-settings-num-kernels">Number of Kernels</Label>
+      <Label for="conv-settings-num-kernels">{{ $t("flowchart.settings.numKernels") }}</Label>
       <NumberField id="conv-settings-num-kernels" :default-value="props.layer.num_kernels" :min="1" :max="128" v-model="numKernels" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -122,7 +122,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3 mt-6">
-      <Label for="conv-settings-stride">Stride</Label>
+      <Label for="conv-settings-stride">{{ $t("flowchart.settings.stride") }}</Label>
       <NumberField id="conv-settings-stride" :default-value="props.layer.stride" :min="1" :max="3" v-model="stride" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -132,7 +132,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3">
-      <Label for="conv-settings-padding">Padding</Label>
+      <Label for="conv-settings-padding">{{ $t("flowchart.settings.padding") }}</Label>
       <NumberField id="conv-settings-padding" :default-value="props.layer.padding" :min="0" :max="3" v-model="padding" @update:model-value="updateLayer">
         <NumberFieldContent>
           <NumberFieldDecrement />
@@ -142,7 +142,7 @@ const outputShape = computed(() => {
       </NumberField>
     </div>
     <div class="grid gap-3 mt-3">
-      <Label for="conv-settings-activation">Activation</Label>
+      <Label for="conv-settings-activation">{{ $t("flowchart.settings.activation") }}</Label>
       <Select id="conv-settings-activation" v-model="activation">
         <SelectTrigger>
           <SelectValue placeholder="ReLU" />

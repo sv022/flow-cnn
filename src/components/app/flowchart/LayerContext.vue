@@ -32,20 +32,20 @@ function openSheet() {
     <ContextMenuContent>
       <ContextMenuItem @select="openSheet">
         <LucideEdit class="mr-2 h-4 w-4" />
-        Edit layer parameters
+        {{ $t("flowchart.context.edit") }}
       </ContextMenuItem>
       <ContextMenuSeparator />
       <ContextMenuItem class="text-destructive-foreground focus:bg-destructive focus:text-destructive-foreground" @select="modelStore.removeLayer(props.layer.id)">
         <LucideTrash class="mr-2 h-4 w-4" />
-        Delete
+        {{ $t("flowchart.context.delete") }}
       </ContextMenuItem>
     </ContextMenuContent>
   </ContextMenu>
   <Sheet v-model:open="isSheetOpen">
     <SheetContent class="overflow-y-scroll h-screen">
       <SheetHeader class="mt-12">
-        <SheetTitle>Parameters</SheetTitle>
-        <SheetDescription> Layer: {{ layer.labelName }}</SheetDescription>
+        <SheetTitle>{{ $t("flowchart.settings.title") }}</SheetTitle>
+        <SheetDescription> {{ $t("flowchart.settings.layer") }}: {{ layer.labelName }}</SheetDescription>
       </SheetHeader>
       <ConvSettings v-if="layer.params.type === LayerType.Convolution" :id="layer.id" :layer="props.layer.params as any" />
       <PoolSettings v-else-if="layer.params.type === LayerType.Pooling" :id="layer.id" :layer="props.layer.params as any" />
@@ -53,7 +53,7 @@ function openSheet() {
       <SheetFooter class="flex w-full">
         <Button class="w-full p-6 font-semibold" variant="destructive" @click="modelStore.removeLayer(props.layer.id)">
           <LucideTrash class="mr-2 h-4 w-4" />
-          Remove layer
+          {{ $t("flowchart.settings.remove") }}
         </Button>
       </SheetFooter>
     </SheetContent>
