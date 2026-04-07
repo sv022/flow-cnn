@@ -25,7 +25,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="w-96 ml-auto h-full p-8 border-l-2 border-mint-700 rounded-xl">
-    <h2 class="text-charcoal mb-8">Model summary</h2>
+    <h2 class="text-charcoal font-semibold mb-8">Model summary</h2>
     <div class="space-y-4">
       <span class="flex justify-between">
         <p>Layers</p>
