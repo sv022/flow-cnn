@@ -1,4 +1,5 @@
 import { LayerType, type Dataset, type Layer } from "@/types";
+import type { Model } from "@/types/model";
 
 export const mockLayers = [
   {
@@ -129,3 +130,158 @@ export const mockDatasets = [
     imageSize: [32, 32, 3],
   },
 ] as Dataset[];
+
+const lenetLayers = [
+  {
+    id: "1",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "conv2d6@5x5",
+    labelParams: "1@28x28",
+    params: {
+      type: LayerType.Convolution,
+      input_width: 28,
+      input_height: 28,
+      channels: 1,
+      kernel_size: 5,
+      num_kernels: 6,
+      stride: 1,
+      padding: 2,
+    },
+  },
+  {
+    id: "2",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "maxpool6@2x2",
+    labelParams: "6@28x28",
+    params: {
+      type: LayerType.Pooling,
+      input_width: 28,
+      input_height: 28,
+      channels: 6,
+      pool: 2,
+      stride: 2,
+    },
+  },
+  {
+    id: "3",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "conv2d16@5x5",
+    labelParams: "6@14x14",
+    params: {
+      type: LayerType.Convolution,
+      input_width: 14,
+      input_height: 14,
+      channels: 6,
+      kernel_size: 5,
+      num_kernels: 16,
+      stride: 1,
+      padding: 0,
+    },
+  },
+  {
+    id: "4",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "maxpool16@2x2",
+    labelParams: "16@11x11",
+    params: {
+      type: LayerType.Pooling,
+      input_width: 10,
+      input_height: 10,
+      channels: 16,
+      pool: 2,
+      stride: 2,
+    },
+  },
+  {
+    id: "5",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "dense-400",
+    labelParams: "1x128",
+    params: {
+      type: LayerType.Dense,
+      input_nodes: 5 * 5 * 16,
+      output_nodes: 120,
+    },
+  },
+  {
+    id: "6",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "dense-120",
+    labelParams: "1x10",
+    params: {
+      type: LayerType.Dense,
+      input_nodes: 120,
+      output_nodes: 84,
+    },
+  },
+  {
+    id: "7",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "dense-84",
+    labelParams: "1x10",
+    params: {
+      type: LayerType.Dense,
+      input_nodes: 84,
+      output_nodes: 10,
+    },
+  },
+] as Layer[];
+
+const perceptronLayers = [
+  {
+    id: "1",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "dense-784",
+    labelParams: "1x256",
+    params: {
+      type: LayerType.Dense,
+      input_nodes: 784,
+      output_nodes: 256,
+    },
+  },
+  {
+    id: "2",
+    position: { x: 0, y: 0 },
+    type: "layer",
+    labelName: "dense-256",
+    labelParams: "1x10",
+    params: {
+      type: LayerType.Dense,
+      input_nodes: 256,
+      output_nodes: 10,
+    },
+  },
+] as Layer[];
+
+export const mockModels = [
+  {
+    id: "1",
+    name: "LeNet-5",
+    description: "Архитектура LeNet-5 для MNIST",
+    layers: lenetLayers,
+    isTrained: false,
+    at: "",
+  },
+  {
+    id: "2",
+    name: "Simple MNIST Classifier",
+    description: "Простая модель для классификации MNIST",
+    layers: mockLayers,
+    isTrained: false,
+  },
+  {
+    id: "3",
+    name: "Simple Perceptron",
+    description: "Простая модель персептрона",
+    layers: perceptronLayers,
+    isTrained: false,
+  },
+] as Model[];

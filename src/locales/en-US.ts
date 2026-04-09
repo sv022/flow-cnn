@@ -8,7 +8,7 @@ export default {
     },
     actions: {
       train: "Train model",
-      export: "Export",
+      export: "Save model",
     },
     user: {
       saved: "Saved models",
@@ -112,5 +112,44 @@ export default {
       ready: "Ready to launch",
       start: "Train model",
     },
+  },
+  save: {
+    title: "Save model",
+    description: "Save your model in one of the available formats",
+    labelFormat: "Save format",
+    options: {
+      save: "Save model",
+      json: "Export to JSON",
+    },
+    labelName: "Model name",
+    nameValidation: {
+      tooShort: "Name must be at least 3 characters long",
+      occupied: "Model with this name already exists",
+    },
+    actions: {
+      cancel: "Cancel",
+      save: "Save",
+    },
+  },
+  saved: {
+    title: "Saved models",
+    description: "Load a previously trained model or explore pretrained models",
+    prebuilt: "Prebuilt models",
+    saved: "Saved models",
+    card: {
+      badge: {
+        saved: "Saved",
+        trained: "Trained",
+      },
+      delete: {
+        title: "Delete model",
+        description: "Are you sure you want to delete this model?",
+        cancel: "Cancel",
+        delete: "Delete",
+      },
+      layers: "Layers",
+      accuracy: "Accuracy",
+    },
+    empty: "No saved models",
   },
 };

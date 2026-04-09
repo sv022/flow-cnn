@@ -1,10 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import ColorModeToggle from "../ColorModeToggle.vue";
 import UserDropdown from "./UserDropdown.vue";
 import { appTabs, useSharedTabs } from "@/utils/tabs";
 import { cn } from "@/lib/utils";
+import SaveDialog from "./save/SaveDialog.vue";
 
 const { activeTab, setTab } = useSharedTabs();
 
@@ -25,7 +27,14 @@ const trainTab = {
       <div class="flex flex-1 items-center space-x-2 justify-end">
         <div class="flex lg:mx-24 lg:space-x-4">
           <Button class="bg-mint-700/90 hover:bg-mint-700" @click="setTab(trainTab)"> {{ $t("header.actions.train") }} </Button>
-          <Button variant="outline">{{ $t("header.actions.export") }}</Button>
+          <Dialog>
+            <DialogTrigger>
+              <Button variant="outline">{{ $t("header.actions.export") }}</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <SaveDialog />
+            </DialogContent>
+          </Dialog>
         </div>
         <ColorModeToggle />
         <UserDropdown />

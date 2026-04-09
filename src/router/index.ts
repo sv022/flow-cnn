@@ -24,6 +24,12 @@ const router = createRouter({
       meta: { title: "Training setup", layout: DefaultLayout },
     },
     {
+      path: "/saved",
+      name: "saved",
+      component: () => import("../views/SavedView.vue"),
+      meta: { title: "Saved models", layout: DefaultLayout },
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "Page not found",
       component: PageNotFound,

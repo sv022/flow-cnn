@@ -1,14 +1,16 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import type { Layer, AddLayerAction, LayerType, Dataset, InputLayer } from "@/types";
-import { mockLayers } from "@/utils/mock";
+// import { mockLayers } from "@/utils/mock";
 import { getLabelsFromParams, getNewLayerParams } from "@/utils/newLayer";
 import { useRenderStore } from "./renderStore";
 import type { ValidationAlert } from "@/types/validation";
 import { _validateModel } from "@/utils/validate";
 
 export const useModelStore = defineStore("model", () => {
-  const layers = ref<Layer[]>(mockLayers as Layer[]);
+  const name = ref("");
+
+  const layers = ref<Layer[]>([] as Layer[]);
 
   const renderStore = useRenderStore();
 
@@ -22,6 +24,8 @@ export const useModelStore = defineStore("model", () => {
     learning_rate: 0.001,
     loss_function: "MSE",
   });
+
+  const accuracy = ref<number | null>(null);
 
   const addLayer = (addId: string, type: LayerType) => {
     let newLayerParams = {} as Layer["params"];
@@ -87,6 +91,11 @@ export const useModelStore = defineStore("model", () => {
     }, 1000);
 
     validationAlerts.value = _validateModel(layers.value, selectedDataset.value);
+  };
+
+  const loadModel = (newName: string, newLayers: Layer[]) => {
+    name.value = newName;
+    layers.value = newLayers;
   };
 
   const setDataset = (dataset: Dataset) => {
@@ -164,6 +173,7 @@ export const useModelStore = defineStore("model", () => {
   });
 
   return {
+    name,
     layers,
     modelNodes,
     validationPending,
@@ -171,11 +181,13 @@ export const useModelStore = defineStore("model", () => {
     selectedDataset,
     trainableParams,
     trainHyperparams,
+    accuracy,
     addLayer,
     removeLayer,
     updateLayer,
     updateLayerLabel,
     validateModel,
+    loadModel,
     setDataset,
     resetDataset,
     checkReadyForTrain,
