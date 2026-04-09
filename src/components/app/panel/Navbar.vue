@@ -23,7 +23,7 @@ const trainTab = {
         </Button>
       </div>
       <div class="flex flex-1 items-center space-x-2 justify-end">
-        <div class="lg:mx-24 lg:space-x-4">
+        <div class="flex lg:mx-24 lg:space-x-4">
           <Button class="bg-mint-700/90 hover:bg-mint-700" @click="setTab(trainTab)"> {{ $t("header.actions.train") }} </Button>
           <Button variant="outline">{{ $t("header.actions.export") }}</Button>
         </div>
