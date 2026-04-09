@@ -66,10 +66,10 @@ function deleteModel() {
       <div class="flex space-x-2">
         <Spinner class="h-4 w-4" v-if="loadingPending" />
         <LucideCheckCheck class="h-4 w-4 stroke-mint-700" v-else-if="modelStore.name === props.model.name && !props.pretrained" />
-        <LucidePlay v-else @click="selectModel" class="h-4 w-4 stroke-mint-700" />
+        <LucidePlay v-else @click.stop="selectModel" class="h-4 w-4 stroke-mint-700" />
         <AlertDialog v-if="!props.pretrained">
           <AlertDialogTrigger as-child>
-            <LucideTrash class="h-4 w-4 stroke-destructive-foreground" />
+            <LucideTrash @click.stop class="h-4 w-4 stroke-destructive-foreground" />
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>

@@ -30,6 +30,12 @@ const router = createRouter({
       meta: { title: "Saved models", layout: DefaultLayout },
     },
     {
+      path: "/model/:id",
+      name: "model",
+      component: () => import("../views/ModelView.vue"),
+      meta: { title: "Model overview", layout: DefaultLayout },
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "Page not found",
       component: PageNotFound,

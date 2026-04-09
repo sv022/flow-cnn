@@ -5,7 +5,7 @@ import { ref } from "vue";
 
 export const useSavedStore = defineStore("savedStore", () => {
   const prebuiltModels = ref<Model[]>(mockModels);
-  const savedModels = ref<Model[]>([]);
+  const savedModels = ref<Model[]>([mockModels.at(-1)!]);
 
   const saveModel = (model: Model) => {
     savedModels.value.push(model);
@@ -25,6 +25,10 @@ export const useSavedStore = defineStore("savedStore", () => {
     });
   };
 
+  const getModel = (id: string) => {
+    return savedModels.value.find((m) => m.id === id);
+  };
+
   const checkName = (name: string) => {
     return savedModels.value.some((m) => m.name === name);
   };
@@ -35,6 +39,7 @@ export const useSavedStore = defineStore("savedStore", () => {
     saveModel,
     deleteModel,
     updateModel,
+    getModel,
     checkName,
   };
 });

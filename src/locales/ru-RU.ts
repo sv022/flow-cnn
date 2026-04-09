@@ -152,4 +152,47 @@ export default {
     },
     empty: "Нет сохраненных моделей",
   },
+  model: {
+    breadcrumb: {
+      saved: "Сохраненные модели",
+    },
+    title: "Информация о модели",
+    back: "Вернуться к сохраненным моделям",
+    params: {
+      layers: "Слои",
+      trainableParameters: "Обучаемые параметры",
+      accuracy: "Точность",
+    },
+    activeTraining: {
+      title: "Обучение модели",
+      inProgress: "В процессе",
+      epoch: "Эпоха",
+      finished: "Завершено",
+      accuracy: "Точность",
+      epochs: "Эпохи",
+    },
+    actions: {
+      title: "Действия",
+      inference: "Тестирование",
+      export: "Экспорт",
+    },
+    runs: {
+      head: {
+        id: "ID запуска",
+        date: "Дата",
+        type: "Тип запуска",
+        epochs: "Эпохи",
+        accuracy: "Точность",
+        status: "Статус",
+      },
+      type: {
+        train: "Обучение",
+        test: "Тестирование",
+      },
+      status: {
+        inProgress: "В процессе",
+        finished: "Завершено",
+      },
+    },
+  },
 };

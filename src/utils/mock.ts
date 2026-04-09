@@ -268,7 +268,7 @@ export const mockModels = [
     description: "Архитектура LeNet-5 для MNIST",
     layers: lenetLayers,
     isTrained: false,
-    at: "",
+    updatedAt: new Date(),
   },
   {
     id: "2",
@@ -276,12 +276,14 @@ export const mockModels = [
     description: "Простая модель для классификации MNIST",
     layers: mockLayers,
     isTrained: false,
+    updatedAt: new Date(),
   },
   {
-    id: "3",
+    id: "testModel1",
     name: "Simple Perceptron",
     description: "Простая модель персептрона",
     layers: perceptronLayers,
     isTrained: false,
+    updatedAt: new Date(),
   },
 ] as Model[];

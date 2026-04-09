@@ -152,4 +152,47 @@ export default {
     },
     empty: "No saved models",
   },
+  model: {
+    breadcrumb: {
+      saved: "Saved models",
+    },
+    title: "Model overview",
+    back: "Back to saved models",
+    params: {
+      layers: "Layers",
+      trainableParameters: "Trainable Parameters",
+      accuracy: "Accuracy",
+    },
+    activeTraining: {
+      title: "Active training",
+      inProgress: "In progress",
+      epoch: "Epoch",
+      finished: "Finished",
+      accuracy: "Accuracy",
+      epochs: "Epochs",
+    },
+    actions: {
+      title: "Actions",
+      inference: "Run inference",
+      export: "Export",
+    },
+    runs: {
+      head: {
+        id: "Run ID",
+        date: "Date",
+        type: "Type",
+        epochs: "Epochs",
+        accuracy: "Accuracy",
+        status: "Status",
+      },
+      type: {
+        train: "Train",
+        test: "Test",
+      },
+      status: {
+        inProgress: "In progress",
+        finished: "Finished",
+      },
+    },
+  },
 };
