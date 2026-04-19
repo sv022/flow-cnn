@@ -48,6 +48,25 @@ const alertStyle = computed(() => {
   return validateAlert.value?.type === "error" ? "text-destructive-foreground" : "text-muted-foreground";
 });
 
+function toJson(model: Model) {
+  const json = JSON.stringify(
+    {
+      learning_rate: modelStore.trainHyperparams.learning_rate,
+      layers: [...model.layers.map((layer) => layer.params)],
+    },
+    null,
+    2,
+  );
+
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${model.name.replaceAll(" ", "_")}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function saveModel() {
   modelStore.name = name.value;
   const newModel = {
@@ -57,6 +76,11 @@ function saveModel() {
     isTrained: false,
     updatedAt: new Date(),
   } as Model;
+
+  if (selectedSave.value === "json") {
+    toJson(newModel);
+    return;
+  }
 
   if (savedStore.checkName(name.value)) {
     const id = savedStore.savedModels.find((m) => m.name === name.value)!.id!;
@@ -106,7 +130,7 @@ if (savedStore.checkName(name.value)) {
       <Button variant="outline"> {{ $t("save.actions.cancel") }} </Button>
     </DialogClose>
     <DialogClose as-child>
-      <Button class="bg-mint-700" :disabled="validateAlert?.type === 'error'" @click="saveModel"> {{ $t("save.actions.save") }} </Button>
+      <Button class="bg-mint-700 hover:bg-mint-800" :disabled="validateAlert?.type === 'error'" @click="saveModel"> {{ $t("save.actions.save") }} </Button>
     </DialogClose>
   </DialogFooter>
 </template>
