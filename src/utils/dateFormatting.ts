@@ -1,4 +1,7 @@
 export function formatUpdatedDate(date: Date): string {
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffSec = Math.floor(diffMs / 1000);

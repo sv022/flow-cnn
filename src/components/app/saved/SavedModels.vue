@@ -24,7 +24,7 @@ function updatedDate(date: Date) {
       v-for="model in savedStore.savedModels"
       :key="model.id"
       :model="model"
-      :updated-at="updatedDate(model.updatedAt!)"
+      :updated-at="updatedDate(new Date(model.updatedAt!))"
       :pretrained="false"
       @click="setTab({ name: 'info', path: `model/${model.id}` })"
     />

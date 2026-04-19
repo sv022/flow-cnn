@@ -5,14 +5,20 @@ import { ref } from "vue";
 
 export const useSavedStore = defineStore("savedStore", () => {
   const prebuiltModels = ref<Model[]>(mockModels);
-  const savedModels = ref<Model[]>([mockModels.at(-1)!]);
+  const savedModels = ref<Model[]>(localStorage.getItem("savedModels") ? JSON.parse(localStorage.getItem("savedModels")!) : []);
+
+  const toLocalStorage = () => {
+    localStorage.setItem("savedModels", JSON.stringify(savedModels.value));
+  };
 
   const saveModel = (model: Model) => {
     savedModels.value.push(model);
+    toLocalStorage();
   };
 
   const deleteModel = (model: Model) => {
     savedModels.value = savedModels.value.filter((m) => m.id !== model.id);
+    toLocalStorage();
   };
 
   const updateModel = (id: string, newModel: Model) => {
@@ -23,6 +29,7 @@ export const useSavedStore = defineStore("savedStore", () => {
         m.updatedAt = new Date();
       }
     });
+    toLocalStorage();
   };
 
   const getModel = (id: string) => {
