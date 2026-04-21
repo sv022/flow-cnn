@@ -33,6 +33,17 @@ export default {
       edit: "Редактировать",
       delete: "Удалить",
     },
+    empty: {
+      title: "Нет слоев",
+      description: "Добавьте слои, чтобы построить модель",
+      action: "Добавить слой",
+    },
+    dropdown: {
+      title: "Выберите слой",
+      conv: "Сверточный",
+      pool: "Пуллинг",
+      dense: "Полносвязный",
+    },
     settings: {
       title: "Параметры",
       layer: "Слой",

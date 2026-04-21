@@ -33,6 +33,17 @@ export default {
       edit: "Edit parameters",
       delete: "Remove",
     },
+    empty: {
+      title: "No layers",
+      description: "Add layers to build a model",
+      action: "Add layer",
+    },
+    dropdown: {
+      title: "Select layer",
+      conv: "Convolutional",
+      pool: "Pooling",
+      dense: "Dense",
+    },
     settings: {
       title: "Parameters",
       layer: "Layer",

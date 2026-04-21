@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import type { Layer, AddLayerAction, LayerType, Dataset, InputLayer } from "@/types";
+import type { Layer, AddLayerAction, LayerType, Dataset, InputLayer, LayersEmpty } from "@/types";
 // import { mockLayers } from "@/utils/mock";
 import { getLabelsFromParams, getNewLayerParams } from "@/utils/newLayer";
 import { useRenderStore } from "./renderStore";
@@ -128,7 +128,7 @@ export const useModelStore = defineStore("model", () => {
   };
 
   const modelNodes = computed(() => {
-    const nodes = [] as (Layer | AddLayerAction | InputLayer)[];
+    const nodes = [] as (Layer | AddLayerAction | InputLayer | LayersEmpty)[];
 
     let currentX = 0;
 
@@ -142,10 +142,19 @@ export const useModelStore = defineStore("model", () => {
       });
     }
 
+    if (layers.value.length === 0) {
+      nodes.push({
+        id: `empty`,
+        type: "empty",
+        position: { x: 0, y: -150 },
+      });
+      return nodes;
+    }
+
     nodes.push({
       id: `add-start`,
       type: "add-layer",
-      position: { x: -125, y: 0 },
+      position: { x: -100, y: 0 },
     });
 
     layers.value.forEach((layer) => {

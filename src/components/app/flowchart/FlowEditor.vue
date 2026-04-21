@@ -10,6 +10,7 @@ import LayerNode from "./LayerNode.vue";
 import AddLayerNode from "./AddLayerNode.vue";
 import ValidateDialog from "./validate/ValidateDialog.vue";
 import InputNode from "./InputNode.vue";
+import EmptyNode from "./EmptyNode.vue";
 
 /**
  * `useVueFlow` provides:
@@ -91,6 +92,10 @@ function toggleDarkMode() {
 
     <template #node-layer="props">
       <LayerNode v-if="modelStore.layers.find((layer) => layer.id === props.id)" :id="props.id" :layer="modelStore.layers.find((layer) => layer.id === props.id)!" />
+    </template>
+
+    <template #node-empty="props">
+      <EmptyNode :id="props.id" />
     </template>
 
     <template #node-input-layer="props">

@@ -45,6 +45,12 @@ export interface AddLayerAction {
   position: { x: number; y: number };
 }
 
+export interface LayersEmpty {
+  id: string;
+  type: "empty";
+  position: { x: number; y: number };
+}
+
 export interface InputLayer {
   id: string;
   position: { x: number; y: number };
