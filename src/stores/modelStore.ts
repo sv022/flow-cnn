@@ -99,6 +99,20 @@ export const useModelStore = defineStore("model", () => {
     selectedDataset.value = null;
   };
 
+  const resetModel = () => {
+    name.value = "";
+    layers.value = [];
+    selectedDataset.value = null;
+    trainHyperparams.value = {
+      epochs: 10,
+      learning_rate: 0.001,
+      loss_function: "MSE",
+    };
+    accuracy.value = null;
+    validationAlerts.value = [];
+    validationPending.value = false;
+  };
+
   const trainableParams = computed(() => {
     let params = 0;
     layers.value.forEach((layer) => {
@@ -192,6 +206,7 @@ export const useModelStore = defineStore("model", () => {
     loadModel,
     setDataset,
     resetDataset,
+    resetModel,
     checkReadyForTrain,
     runTrain,
   };

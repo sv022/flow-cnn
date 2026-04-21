@@ -4,7 +4,7 @@ import { VueFlow, useVueFlow } from "@vue-flow/core";
 import { Background } from "@vue-flow/background";
 import { ControlButton, Controls } from "@vue-flow/controls";
 import { MiniMap } from "@vue-flow/minimap";
-import { LucideRefreshCcw, LucideSun, LucideMoon, LucideTerminal, LucideScanSearch } from "lucide-vue-next";
+import { LucideRefreshCcw, LucideSun, LucideMoon, LucideTerminal, LucideScanSearch, LucideTrash } from "lucide-vue-next";
 import { useModelStore } from "@/stores/modelStore";
 import LayerNode from "./LayerNode.vue";
 import AddLayerNode from "./AddLayerNode.vue";
@@ -120,6 +120,10 @@ function toggleDarkMode() {
 
       <ControlButton title="Log `toObject`" @click="logToObject">
         <LucideTerminal class="h-4 w-4" />
+      </ControlButton>
+
+      <ControlButton title="Clear" @click="modelStore.resetModel">
+        <LucideTrash class="h-4 w-4 stroke-destructive-foreground" />
       </ControlButton>
     </Controls>
     <ValidateDialog>
