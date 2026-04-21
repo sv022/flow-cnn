@@ -2,7 +2,7 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import type { Layer, AddLayerAction, LayerType, Dataset, InputLayer, LayersEmpty } from "@/types";
 // import { mockLayers } from "@/utils/mock";
-import { getLabelsFromParams, getNewLayerParams } from "@/utils/newLayer";
+import { getBaseLayerParams, getLabelsFromParams, getNewLayerParams } from "@/utils/newLayer";
 import { useRenderStore } from "./renderStore";
 import type { ValidationAlert } from "@/types/validation";
 import { _validateModel } from "@/utils/validate";
@@ -31,21 +31,14 @@ export const useModelStore = defineStore("model", () => {
     let newLayerParams = {} as Layer["params"];
     let baseLayerParams = {} as Layer["params"];
     if (layers.value.length === 0) {
-      baseLayerParams = {
-        type,
-        input_width: 26,
-        input_height: 26,
-        channels: 3,
-        kernel_size: 3,
-        num_kernels: 32,
-        stride: 1,
-        padding: 1,
-      } as Layer["params"];
+      if (selectedDataset.value === null) baseLayerParams = getBaseLayerParams(type);
+      else baseLayerParams = getBaseLayerParams(type, selectedDataset!.value.imageSize);
+      newLayerParams = baseLayerParams;
     } else {
       baseLayerParams = addId === "add-start" ? layers.value[0]!.params : layers.value[layers.value.length - 1]!.params;
+      if (addId === "add-start") newLayerParams = getNewLayerParams(type, baseLayerParams, "before")!;
+      else newLayerParams = getNewLayerParams(type, baseLayerParams, "after")!;
     }
-    if (addId === "add-start") newLayerParams = getNewLayerParams(type, baseLayerParams, "before")!;
-    else newLayerParams = getNewLayerParams(type, baseLayerParams, "after")!;
 
     const newLabels = getLabelsFromParams(newLayerParams);
 

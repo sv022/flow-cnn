@@ -18,6 +18,36 @@ function poolInputSize(outputSize: number, kernelHeight: number, strideHeight: n
   return inputSize;
 }
 
+export function getBaseLayerParams(type: LayerType, dataset = [28, 28, 1]) {
+  if (type === LayerType.Convolution) {
+    return {
+      type,
+      input_width: dataset[0],
+      input_height: dataset[1],
+      channels: dataset[2],
+      kernel_size: 3,
+      num_kernels: 16,
+      stride: 1,
+      padding: 0,
+    } as Layer["params"];
+  } else if (type === LayerType.Pooling) {
+    return {
+      type,
+      input_width: dataset[0],
+      input_height: dataset[1],
+      channels: dataset[2],
+      pool: 2,
+      stride: 2,
+    } as Layer["params"];
+  } else {
+    return {
+      type,
+      input_nodes: dataset[0]! * dataset[1]! * dataset[2]!,
+      output_nodes: 10,
+    } as Layer["params"];
+  }
+}
+
 export function getNewLayerParams(type: LayerType, nextLayer: Layer["params"], where: "before" | "after") {
   switch (type) {
     case LayerType.Convolution:
